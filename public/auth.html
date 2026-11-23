@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniWork | เข้าสู่ระบบ</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eef2ff, #f8faff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            color: #1e293b;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 620px;
+            background: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(30, 64, 175, 0.12);
+        }
+
+        .left-panel {
+            background: linear-gradient(145deg, #263b91, #4264d8);
+            color: white;
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 28px !important;
+            font-weight: 800 !important;
+            color: #3154c7 !important;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #16b8c4 !important;
+        }
+
+        .logo:hover {
+            opacity: 0.85;
+            transition: 0.2s;
+        }
+
+        .left-panel h1 {
+            font-size: 34px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .left-panel p {
+            color: #dbeafe;
+            line-height: 1.9;
+            font-size: 15px;
+        }
+
+        .features {
+            margin-top: 35px;
+            line-height: 2.7;
+            color: #e0e7ff;
+            font-size: 14px;
+        }
+
+        .right-panel {
+            padding: 50px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 5px;
+            margin: 25px 0;
+        }
+
+        .tab {
+            width: 50%;
+            padding: 12px;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 14px;
+            background: transparent;
+            color: #64748b;
+        }
+
+        .tab.active {
+            background: #3154c7;
+            color: white;
+        }
+
+        h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 7px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        input:focus, select:focus {
+            border-color: #4264d8;
+            box-shadow: 0 0 0 3px rgba(66, 100, 216, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #3154c7;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: #233f9e;
+            transform: translateY(-2px);
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 9px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .message.success {
+            display: block;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 750px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-panel {
+                padding: 30px;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+            }
+
+            .left-panel h1 {
+                font-size: 25px;
+            }
+
+            .features {
+                margin-top: 10px;
+            }
+
+            .right-panel {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <section class="left-panel">
+        <div class="logo">Uni<span>Work.</span></div>
+
+        <h1>ค้นหางานที่ใช่<br>ในเวลาที่เหมาะกับคุณ</h1>
+
+        <p>
+            แพลตฟอร์มค้นหางานพาร์ทไทม์สำหรับนักศึกษา
+            เชื่อมต่อนักศึกษากับผู้ประกอบการได้ง่ายขึ้น
+        </p>
+
+        <div class="features">
+            ✓ ค้นหางานพาร์ทไทม์ได้ง่าย<br>
+            ✓ เลือกงานให้เหมาะกับตารางเรียน<br>
+            ✓ สมัครงานได้ในแพลตฟอร์มเดียว
+        </div>
+    </section>
+
+    <section class="right-panel">
+
+        <h2 id="formTitle">ยินดีต้อนรับกลับมา</h2>
+        <p class="subtitle" id="formSubtitle">
+            เข้าสู่ระบบเพื่อเริ่มต้นใช้งาน UniWork
+        </p>
+
+        <div class="tabs">
+            <button class="tab active" id="loginTab"
+                onclick="switchForm('login')">
+                เข้าสู่ระบบ
+            </button>
+
+            <button class="tab" id="registerTab"
+                onclick="switchForm('register')">
+                สมัครสมาชิก
+            </button>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label>อีเมล</label>
+                <input type="email" id="loginEmail"
+                    placeholder="example@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>รหัสผ่าน</label>
+                <input type="password" id="loginPassword"
+                    placeholder="กรอกรหัสผ่าน" required>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                เข้าสู่ระบบ
+            </button>
+
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="registerForm" class="hidden">
+
+            <div class="form-group">
+                <label>ชื่อ-นามสกุล</label>
+                <input type="text" id="fullName"
+                    placeholder="กรอกชื่อ-นามสกุล" required>
+            </div>
+
+            <div class="form-group">
+                <label>อีเมล</label>
+                <input type="email" id="registerEmail"
+                    placeholder="example@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>รหัสผ่าน</label>
+                <input type="password" id="registerPassword"
+                    placeholder="อย่างน้อย 8 ตัวอักษร"
+                    minlength="8" required>
+            </div>
+
+            <div class="form-group">
+                <label>ประเภทบัญชี</label>
+                <select id="role" onchange="toggleCompany()">
+                    <option value="student">นักศึกษา</option>
+                    <option value="employer">ผู้ประกอบการ</option>
+                </select>
+            </div>
+
+            <div class="form-group hidden" id="companyGroup">
+                <label>ชื่อบริษัท / ร้านค้า</label>
+                <input type="text" id="companyName"
+                    placeholder="กรอกชื่อบริษัทหรือร้านค้า">
+            </div>
+
+            <button type="submit" class="submit-btn">
+                สมัครสมาชิก
+            </button>
+
+        </form>
+
+        <div id="message" class="message"></div>
+
+    </section>
+
+</div>
+
+<script>
+    const loginForm = document.getElementById("loginForm");
+    const registerForm = document.getElementById("registerForm");
+    const message = document.getElementById("message");
+
+    function switchForm(type) {
+        message.className = "message";
+        message.textContent = "";
+
+        const isLogin = type === "login";
+
+        loginForm.classList.toggle("hidden", !isLogin);
+        registerForm.classList.toggle("hidden", isLogin);
+
+        document.getElementById("loginTab")
+            .classList.toggle("active", isLogin);
+
+        document.getElementById("registerTab")
+            .classList.toggle("active", !isLogin);
+
+        document.getElementById("formTitle").textContent =
+            isLogin ? "ยินดีต้อนรับกลับมา" : "สร้างบัญชี UniWork";
+
+        document.getElementById("formSubtitle").textContent =
+            isLogin
+                ? "เข้าสู่ระบบเพื่อเริ่มต้นใช้งาน UniWork"
+                : "สมัครสมาชิกเพื่อเริ่มต้นค้นหางาน";
+
+    }
+
+    function toggleCompany() {
+        const isEmployer =
+            document.getElementById("role").value === "employer";
+
+        const companyGroup =
+            document.getElementById("companyGroup");
+
+        const companyName =
+            document.getElementById("companyName");
+
+        companyGroup.classList.toggle("hidden", !isEmployer);
+        companyName.required = isEmployer;
+    }
+
+    function showMessage(text, type) {
+        message.textContent = text;
+        message.className = "message " + type;
+    }
+
+    // สมัครสมาชิก
+    registerForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const role = document.getElementById("role").value;
+
+        const data = {
+            full_name: document.getElementById("fullName").value.trim(),
+            email: document.getElementById("registerEmail").value.trim(),
+            password: document.getElementById("registerPassword").value,
+            role: role,
+            company_name: role === "employer"
+                ? document.getElementById("companyName").value.trim()
+                : null
+        };
+
+        try {
+            const response = await fetch("/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || "สมัครสมาชิกไม่สำเร็จ");
+            }
+
+            showMessage(
+                "สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบ",
+                "success"
+            );
+
+            registerForm.reset();
+            toggleCompany();
+
+            setTimeout(() => switchForm("login"), 1500);
+
+        } catch (error) {
+            showMessage(error.message, "error");
+        }
+    });
+
+    // เข้าสู่ระบบ
+    loginForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const data = {
+            email: document.getElementById("loginEmail").value.trim(),
+            password: document.getElementById("loginPassword").value
+        };
+
+        try {
+            const response = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || "เข้าสู่ระบบไม่สำเร็จ");
+            }
+
+            localStorage.setItem("uniwork_token", result.token);
+            localStorage.setItem("uniwork_user",
+                JSON.stringify(result.user));
+
+            showMessage("เข้าสู่ระบบสำเร็จ!", "success");
+
+            // แยกหน้า Dashboard ตามประเภทบัญชี
+            setTimeout(() => {
+                const role = result.user.role;
+
+                if (role === "admin") {
+                    window.location.href = "/admin.html";
+                } 
+                else if (role === "employer") {
+                    window.location.href = "/dashboard.html";
+                } 
+                else {
+                    window.location.href = "/dashboard.html";
+                }
+            }, 1000);
+
+        } catch (error) {
+            showMessage(error.message, "error");
+        }
+    });
+
+    toggleCompany();
+</script>
+
+</body>
+</html>

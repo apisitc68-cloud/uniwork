@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บัญชีงานของฉัน | UniWork</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #f3f5fc;
+            color: #25304a;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 16px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 20px rgba(37, 64, 130, 0.08);
+            border-bottom: 1px solid #edf0f8;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px !important;
+            font-weight: 800 !important;
+            color: #3154c7 !important;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #16b8c4 !important;
+        }
+
+        .logo:hover {
+            opacity: 0.85;
+            transition: 0.2s;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 12px;
+            background: transparent;
+            color: #52617e;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+
+        .nav a:hover {
+            background: #eef2ff;
+            color: #3154c7;
+            transform: translateY(-2px);
+        }
+
+        .nav a:last-child {
+            background: #fff0f0;
+            color: #dc4545;
+            margin-left: 5px;
+        }
+
+        .nav a:last-child:hover {
+            background: #ffe0e0;
+            color: #bd2929;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #7b849b;
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 22px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(40,60,120,.05);
+        }
+
+        .summary-card p {
+            color: #7b849b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .summary-card h2 {
+            font-size: 30px;
+            color: #3154c7;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            border: none;
+            padding: 11px 17px;
+            border-radius: 10px;
+            background: white;
+            color: #667085;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .tab.active {
+            background: #3154c7;
+            color: white;
+        }
+
+        .job-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .job-card {
+            background: white;
+            padding: 23px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(40,60,120,.05);
+            border: 1px solid #edf0f7;
+        }
+
+        .job-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .job-card h3 {
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .company {
+            color: #7b849b;
+            font-size: 14px;
+        }
+
+        .job-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 17px;
+            color: #667085;
+            font-size: 14px;
+        }
+
+        .status {
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .pending {
+            background: #fff5d9;
+            color: #a66a00;
+        }
+
+        .accepted {
+            background: #e4efff;
+            color: #2454b8;
+        }
+
+        .completed {
+            background: #dcfce7;
+            color: #168044;
+        }
+
+        .rejected {
+            background: #ffe4e6;
+            color: #be123c;
+        }
+
+        .rating-box {
+            border-top: 1px solid #edf0f7;
+            margin-top: 20px;
+            padding-top: 18px;
+        }
+
+        .rating-box h4 {
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .star {
+            font-size: 30px;
+            color: #d1d5db;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .star.selected {
+            color: #f5b400;
+        }
+
+        .rating-box textarea {
+            width: 100%;
+            min-height: 75px;
+            border: 1px solid #dce1ec;
+            border-radius: 9px;
+            padding: 12px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+
+        .submit-rating {
+            background: #3154c7;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .submit-rating:hover {
+            background: #233f9e;
+        }
+
+        .empty {
+            background: white;
+            padding: 45px 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: #8b93a7;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            color: #d12d2d;
+        }
+
+        @media (max-width: 750px) {
+            .summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .page-title h1 {
+                font-size: 23px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 15px 5%;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            .nav {
+                width: 100%;
+                gap: 6px;
+            }
+
+            .nav a {
+                padding: 9px 12px;
+                font-size: 12px;
+            }
+
+            .nav a:last-child {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .summary {
+                grid-template-columns: 1fr 1fr;
+                gap: 9px;
+            }
+
+            .summary-card {
+                padding: 15px;
+            }
+
+            .summary-card h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="/dashboard.html" class="logo">Uni<span>Work</span></a>
+
+    <nav class="nav">
+        <a href="/dashboard.html">หน้าหลัก</a>
+        <a href="/history.html">ประวัติสมัครงาน</a>
+        <a href="/profile.html">โปรไฟล์</a>
+        <a href="#" onclick="logout()">ออกจากระบบ</a>
+    </nav>
+</header>
+
+<main class="container">
+
+    <section class="page-title">
+        <h1>💼 บัญชีงานของฉัน</h1>
+        <p>ติดตามสถานะงานที่สมัครและงานที่ได้รับการตอบรับ</p>
+    </section>
+
+    <div id="errorMessage" class="message"></div>
+
+    <section class="summary">
+        <div class="summary-card">
+            <p>📋 รอการตอบรับ</p>
+            <h2 id="pendingCount">0</h2>
+        </div>
+
+        <div class="summary-card">
+            <p>💼 กำลังทำงาน</p>
+            <h2 id="acceptedCount">0</h2>
+        </div>
+
+        <div class="summary-card">
+            <p>✅ ทำงานเสร็จแล้ว</p>
+            <h2 id="completedCount">0</h2>
+        </div>
+
+        <div class="summary-card">
+            <p>❌ ไม่ได้รับการตอบรับ</p>
+            <h2 id="rejectedCount">0</h2>
+        </div>
+    </section>
+
+    <div class="tabs">
+        <button class="tab active" onclick="filterJobs('all', this)">ทั้งหมด</button>
+        <button class="tab" onclick="filterJobs('accepted', this)">กำลังทำงาน</button>
+        <button class="tab" onclick="filterJobs('completed', this)">ทำงานเสร็จแล้ว</button>
+        <button class="tab" onclick="filterJobs('pending', this)">รอการตอบรับ</button>
+        <button class="tab" onclick="filterJobs('rejected', this)">ไม่ผ่าน</button>
+    </div>
+
+    <section id="jobList" class="job-list">
+        <div class="empty">กำลังโหลดข้อมูลงาน...</div>
+    </section>
+
+</main>
+
+<script>
+    const token = localStorage.getItem("uniwork_token");
+
+    let applications = [];
+    let currentFilter = "all";
+
+    if (!token) {
+        window.location.href = "/auth.html";
+    }
+
+    async function loadJobs() {
+        try {
+            const response = await fetch("/api/applications/my", {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || "ไม่สามารถโหลดข้อมูลงานได้");
+            }
+
+            applications = Array.isArray(data)
+                ? data
+                : (data.applications || data.data || []);
+
+            updateSummary();
+            renderJobs();
+
+        } catch (error) {
+            document.getElementById("errorMessage").textContent = error.message;
+
+            document.getElementById("jobList").innerHTML =
+                `<div class="empty">ไม่สามารถโหลดข้อมูลงานได้ กรุณาลองใหม่อีกครั้ง</div>`;
+        }
+    }
+
+    function updateSummary() {
+        document.getElementById("pendingCount").textContent =
+            applications.filter(a => a.status === "pending").length;
+
+        document.getElementById("acceptedCount").textContent =
+            applications.filter(a => a.status === "accepted").length;
+
+        document.getElementById("completedCount").textContent =
+            applications.filter(a => a.status === "completed").length;
+
+        document.getElementById("rejectedCount").textContent =
+            applications.filter(a => a.status === "rejected").length;
+    }
+
+    function filterJobs(status, button) {
+        currentFilter = status;
+
+        document.querySelectorAll(".tab").forEach(tab => {
+            tab.classList.remove("active");
+        });
+
+        button.classList.add("active");
+        renderJobs();
+    }
+
+    function renderJobs() {
+        const container = document.getElementById("jobList");
+
+        let filtered = applications;
+
+        if (currentFilter !== "all") {
+            filtered = applications.filter(job => job.status === currentFilter);
+        }
+
+        if (filtered.length === 0) {
+            container.innerHTML = `
+                <div class="empty">
+                    <h3>ยังไม่มีรายการงานในหมวดนี้</h3>
+                    <p style="margin-top:8px;">เมื่อมีการสมัครงานหรือได้รับการตอบรับ รายการจะแสดงที่นี่</p>
+                </div>
+            `;
+            return;
+        }
+
+        container.innerHTML = filtered.map(job => {
+            const statusText = {
+                pending: "รอการตอบรับ",
+                accepted: "กำลังทำงาน",
+                completed: "ทำงานเสร็จแล้ว",
+                rejected: "ไม่ผ่านการคัดเลือก"
+            };
+
+            const salary = formatSalary(job);
+
+            return `
+                <article class="job-card">
+                    <div class="job-top">
+                        <div>
+                            <h3>${escapeHTML(job.title || "ไม่ระบุชื่องาน")}</h3>
+                            <div class="company">
+                                🏢 ${escapeHTML(job.company_name || "ไม่ระบุบริษัท")}
+                            </div>
+                        </div>
+
+                        <span class="status ${job.status}">
+                            ${statusText[job.status] || job.status}
+                        </span>
+                    </div>
+
+                    <div class="job-info">
+                        <span>📍 ${escapeHTML(job.location || "ไม่ระบุสถานที่")}</span>
+                        <span>💰 ${salary}</span>
+                        <span>📅 สมัครเมื่อ ${formatDate(job.applied_at)}</span>
+                    </div>
+
+                    ${job.status === "completed" ? `
+                        <div class="rating-box">
+                            <h4>⭐ ให้คะแนนงานนี้</h4>
+
+                            <div class="stars" id="stars-${job.job_id}">
+                                ${[1,2,3,4,5].map(number => `
+                                    <button
+                                        type="button"
+                                        class="star"
+                                        onclick="selectRating(${job.job_id}, ${number})"
+                                        aria-label="${number} ดาว"
+                                    >★</button>
+                                `).join("")}
+                            </div>
+
+                            <textarea
+                                id="review-${job.job_id}"
+                                placeholder="เขียนความคิดเห็นเกี่ยวกับงานนี้ (ไม่บังคับ)"
+                            ></textarea>
+
+                            <button
+                                class="submit-rating"
+                                onclick="submitRating(${job.job_id}, this)"
+                            >
+                                ส่งคะแนน
+                            </button>
+                        </div>
+                    ` : ""}
+                </article>
+            `;
+        }).join("");
+    }
+
+    const selectedRatings = {};
+
+    function selectRating(jobId, rating) {
+        selectedRatings[jobId] = rating;
+
+        const stars = document.querySelectorAll(`#stars-${jobId} .star`);
+
+        stars.forEach((star, index) => {
+            star.classList.toggle("selected", index < rating);
+        });
+    }
+
+    async function submitRating(jobId, button) {
+        const rating = selectedRatings[jobId];
+
+        if (!rating) {
+            alert("กรุณาเลือกคะแนนดาวก่อน");
+            return;
+        }
+
+        const review = document.getElementById(`review-${jobId}`).value;
+
+        button.disabled = true;
+        button.textContent = "กำลังส่ง...";
+
+        try {
+            const response = await fetch(`/api/applications/${jobId}/rating`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    rating,
+                    review
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || "ไม่สามารถส่งคะแนนได้");
+            }
+
+            alert(data.message || "ขอบคุณสำหรับการให้คะแนน!");
+
+            button.textContent = "ส่งคะแนนแล้ว";
+
+        } catch (error) {
+            alert(error.message);
+            button.disabled = false;
+            button.textContent = "ส่งคะแนน";
+        }
+    }
+
+    function formatSalary(job) {
+        if (job.salary_min == null && job.salary_max == null) {
+            return "ไม่ระบุค่าจ้าง";
+        }
+
+        const min = Number(job.salary_min || 0).toLocaleString("th-TH");
+        const max = Number(job.salary_max || 0).toLocaleString("th-TH");
+
+        if (job.salary_min != null && job.salary_max != null) {
+            return `${min} - ${max} บาท`;
+        }
+
+        return `${job.salary_min != null ? min : max} บาท`;
+    }
+
+    function formatDate(date) {
+        if (!date) return "ไม่ระบุ";
+
+        const parsedDate = new Date(date);
+
+        if (isNaN(parsedDate.getTime())) return "ไม่ระบุ";
+
+        return parsedDate.toLocaleDateString("th-TH", {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        });
+    }
+
+    function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]);
+    }
+
+    function logout() {
+        localStorage.removeItem("uniwork_token");
+        localStorage.removeItem("uniwork_user");
+        window.location.href = "/auth.html";
+    }
+
+    loadJobs();
+</script>
+
+</body>
+</html>

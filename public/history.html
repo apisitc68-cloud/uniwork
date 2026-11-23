@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UniWork | ประวัติสมัครงาน</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Prompt', sans-serif;
+}
+
+body {
+    background: #f5f7fc;
+    color: #1e293b;
+}
+
+header {
+    height: 75px;
+    background: white;
+    border-bottom: 1px solid #e8edf5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #3154c7 !important;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #16b8c4 !important;
+}
+
+.logo:hover {
+    opacity: 0.85;
+    transition: 0.2s;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-btn {
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: .2s;
+}
+
+.back-btn {
+    background: #e8edff;
+    color: #3154c7;
+}
+
+.back-btn:hover {
+    background: #dbe5ff;
+}
+
+.logout {
+    background: #fff1f2;
+    color: #e11d48;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 22px;
+}
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.page-heading h1 {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.muted {
+    color: #8491a5;
+    font-size: 14px;
+}
+
+.total-badge {
+    background: #e8edff;
+    color: #3154c7;
+    padding: 9px 16px;
+    border-radius: 30px;
+    font-size: 13px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #edf0f6;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 5px 20px #1e3a8a08;
+}
+
+.stat-card p {
+    color: #8491a5;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.stat-card h2 {
+    font-size: 28px;
+}
+
+.stat-card.pending h2 {
+    color: #d97706;
+}
+
+.stat-card.accepted h2 {
+    color: #16a34a;
+}
+
+.stat-card.rejected h2 {
+    color: #e11d48;
+}
+
+.panel {
+    background: white;
+    border: 1px solid #edf0f6;
+    border-radius: 17px;
+    padding: 25px;
+    box-shadow: 0 5px 20px #1e3a8a08;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.panel-header h2 {
+    font-size: 18px;
+}
+
+.application-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.application-card {
+    border: 1px solid #e9edf4;
+    border-radius: 14px;
+    padding: 20px;
+    transition: .2s;
+}
+
+.application-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px #1e3a8a12;
+}
+
+.application-card h3 {
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.company {
+    color: #3154c7;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.info {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 2;
+    margin-bottom: 15px;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.pending {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.accepted {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.rejected {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.applied-date {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #edf0f6;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 55px 20px;
+    color: #94a3b8;
+    line-height: 2;
+}
+
+.empty-icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: #dc2626;
+}
+
+.loading {
+    text-align: center;
+    padding: 45px;
+    color: #94a3b8;
+    grid-column: 1 / -1;
+}
+
+@media(max-width:700px) {
+    header {
+        padding: 0 17px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .header-actions {
+        gap: 7px;
+    }
+
+    .header-btn,
+    .logout {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    main {
+        margin: 25px auto;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .page-heading h1 {
+        font-size: 23px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-card h2 {
+        font-size: 23px;
+    }
+
+    .application-list {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a href="/dashboard.html" class="logo">Uni<span>Work.</span></a>
+
+    <div class="header-actions">
+        <a href="/dashboard.html" class="header-btn back-btn">
+            ← กลับหน้าหลัก
+        </a>
+
+        <button class="logout" onclick="logout()">
+            ออกจากระบบ
+        </button>
+    </div>
+</header>
+
+<main>
+
+    <section class="page-heading">
+        <div>
+            <h1>📋 ประวัติการสมัครงาน</h1>
+            <p class="muted">
+                ตรวจสอบงานที่คุณเคยสมัครและติดตามผลการพิจารณา
+            </p>
+        </div>
+
+        <span class="total-badge" id="totalApplications">
+            ทั้งหมด 0 รายการ
+        </span>
+    </section>
+
+    <section class="stats">
+
+        <div class="stat-card pending">
+            <p>⏳ รอการพิจารณา</p>
+            <h2 id="pendingCount">0</h2>
+        </div>
+
+        <div class="stat-card accepted">
+            <p>✅ ได้รับการตอบรับ</p>
+            <h2 id="acceptedCount">0</h2>
+        </div>
+
+        <div class="stat-card rejected">
+            <p>❌ ไม่ผ่านการพิจารณา</p>
+            <h2 id="rejectedCount">0</h2>
+        </div>
+
+    </section>
+
+    <section class="panel">
+
+        <div class="panel-header">
+            <h2>รายการสมัครงานของฉัน</h2>
+        </div>
+
+        <div class="application-list" id="applicationList">
+            <div class="loading">
+                กำลังโหลดประวัติการสมัครงาน...
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+
+const token = localStorage.getItem("uniwork_token");
+
+let currentUser = null;
+
+try {
+    currentUser = JSON.parse(
+        localStorage.getItem("uniwork_user") || "null"
+    );
+} catch (error) {
+    currentUser = null;
+}
+
+if (!token || !currentUser || currentUser.role !== "student") {
+    localStorage.removeItem("uniwork_token");
+    localStorage.removeItem("uniwork_user");
+    window.location.href = "/auth.html";
+}
+
+async function apiRequest(url) {
+
+    const response = await fetch(url, {
+        headers: {
+            "Authorization": "Bearer " + token
+        }
+    });
+
+    const result = await response.json();
+
+    if (response.status === 401) {
+        logout();
+        throw new Error("กรุณาเข้าสู่ระบบใหม่");
+    }
+
+    if (!response.ok || result.success === false) {
+        throw new Error(result.message || "เกิดข้อผิดพลาด");
+    }
+
+    return result;
+}
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[char]);
+}
+
+function formatDate(value) {
+
+    if (!value) return "ไม่ระบุวันที่";
+
+    const date = new Date(value);
+
+    if (isNaN(date.getTime())) {
+        return "ไม่ระบุวันที่";
+    }
+
+    return date.toLocaleString("th-TH", {
+        dateStyle: "medium",
+        timeStyle: "short"
+    });
+}
+
+function renderApplications(applications) {
+
+    const container = document.getElementById("applicationList");
+
+    const counts = {
+        pending: 0,
+        accepted: 0,
+        rejected: 0
+    };
+
+    applications.forEach(app => {
+        if (Object.prototype.hasOwnProperty.call(counts, app.status)) {
+            counts[app.status]++;
+        }
+    });
+
+    document.getElementById("totalApplications").textContent =
+        `ทั้งหมด ${applications.length} รายการ`;
+
+    document.getElementById("pendingCount").textContent =
+        counts.pending;
+
+    document.getElementById("acceptedCount").textContent =
+        counts.accepted;
+
+    document.getElementById("rejectedCount").textContent =
+        counts.rejected;
+
+    if (applications.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">📭</div>
+                <h3>ยังไม่มีประวัติการสมัครงาน</h3>
+                <p>ลองค้นหางานที่เหมาะกับคุณและเริ่มสมัครงานได้เลย</p>
+                <br>
+                <a href="/dashboard.html" class="header-btn back-btn">
+                    ค้นหางาน
+                </a>
+            </div>
+        `;
+
+        return;
+    }
+
+    const statusInfo = {
+        pending: {
+            text: "⏳ รอการพิจารณา",
+            className: "pending"
+        },
+        accepted: {
+            text: "✅ ได้รับการตอบรับ",
+            className: "accepted"
+        },
+        rejected: {
+            text: "❌ ไม่ผ่านการพิจารณา",
+            className: "rejected"
+        }
+    };
+
+    container.innerHTML = applications.map(app => {
+
+        const status = statusInfo[app.status] || {
+            text: "ไม่ทราบสถานะ",
+            className: "pending"
+        };
+
+        return `
+            <article class="application-card">
+
+                <h3>${escapeHTML(app.title)}</h3>
+
+                <div class="company">
+                    🏢 ${escapeHTML(app.company_name || "ไม่ระบุบริษัท")}
+                </div>
+
+                <div class="info">
+                    📍 ${escapeHTML(app.location || "ไม่ระบุสถานที่")}<br>
+                    💰 ${escapeHTML(formatSalary(app))}
+                </div>
+
+                <span class="status ${status.className}">
+                    ${status.text}
+                </span>
+
+                <div class="applied-date">
+                    🗓️ วันที่สมัคร: ${escapeHTML(formatDate(app.applied_at))}
+                </div>
+
+            </article>
+        `;
+
+    }).join("");
+
+}
+
+function formatSalary(app) {
+
+    if (app.salary_min == null && app.salary_max == null) {
+        return "ค่าจ้างตามตกลง";
+    }
+
+    const min = app.salary_min == null
+        ? null
+        : Number(app.salary_min);
+
+    const max = app.salary_max == null
+        ? null
+        : Number(app.salary_max);
+
+    const unit = {
+        hourly: "/ชั่วโมง",
+        daily: "/วัน",
+        monthly: "/เดือน"
+    }[app.pay_type] || "";
+
+    if (min !== null && max !== null) {
+        return `${min.toLocaleString()} - ${max.toLocaleString()} บาท${unit}`;
+    }
+
+    if (min !== null) {
+        return `เริ่มต้น ${min.toLocaleString()} บาท${unit}`;
+    }
+
+    return `สูงสุด ${max.toLocaleString()} บาท${unit}`;
+}
+
+async function loadApplications() {
+
+    const container = document.getElementById("applicationList");
+
+    try {
+
+        const result = await apiRequest("/api/applications/my");
+
+        renderApplications(result.data || []);
+
+    } catch (error) {
+
+        console.error("Load applications error:", error);
+
+        container.innerHTML = `
+            <div class="empty error">
+                ไม่สามารถโหลดประวัติการสมัครงานได้<br>
+                ${escapeHTML(error.message)}
+            </div>
+        `;
+
+    }
+}
+
+function logout() {
+
+    localStorage.removeItem("uniwork_token");
+    localStorage.removeItem("uniwork_user");
+
+    window.location.href = "/auth.html";
+
+}
+
+loadApplications();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | UniWork</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, "Noto Sans Thai", sans-serif;
+        }
+
+        body {
+            background: #f4f6fb;
+            color: #263247;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 17px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 28px !important;
+            font-weight: 800 !important;
+            color: #3154c7 !important;
+            letter-spacing: -1px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #16b8c4 !important;
+        }
+
+        .logo:hover {
+            opacity: 0.85;
+            transition: 0.2s;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        button, a {
+            cursor: pointer;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 9px;
+            padding: 10px 17px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .btn-back {
+            background: #eef2ff;
+            color: #3867d6;
+        }
+
+        .btn-logout {
+            background: #fff0f0;
+            color: #e74c3c;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            margin-bottom: 22px;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .page-title p {
+            color: #7b8798;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.04);
+            margin-bottom: 22px;
+        }
+
+        .account-info {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #edf0f5;
+            margin-bottom: 25px;
+        }
+
+        .avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: #e8efff;
+            color: #3867d6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .account-info h2 {
+            margin-bottom: 6px;
+            font-size: 21px;
+        }
+
+        .account-info p {
+            color: #8490a3;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: #edf3ff;
+            color: #3867d6;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 12px;
+            margin-top: 7px;
+        }
+
+        .section-title {
+            font-size: 19px;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            border: 1px solid #dfe4ed;
+            border-radius: 9px;
+            padding: 12px 13px;
+            font-size: 14px;
+            outline: none;
+            background: #ffffff;
+            color: #263247;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #3867d6;
+            box-shadow: 0 0 0 3px rgba(56,103,214,0.08);
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .readonly {
+            background: #f5f6f8;
+            color: #8490a3;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #edf0f5;
+        }
+
+        .btn-save {
+            background: #3867d6;
+            color: white;
+            padding: 12px 25px;
+            font-weight: bold;
+        }
+
+        .btn-save:hover {
+            background: #2854bb;
+        }
+
+        .btn-cancel {
+            background: #eef0f4;
+            color: #596579;
+            padding: 12px 22px;
+        }
+
+        .message {
+            display: none;
+            padding: 13px 16px;
+            border-radius: 9px;
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+
+        .message.success {
+            display: block;
+            background: #e8f8ef;
+            color: #218c52;
+        }
+
+        .message.error {
+            display: block;
+            background: #fff0f0;
+            color: #d64545;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: #8490a3;
+        }
+
+        footer {
+            text-align: center;
+            color: #9aa4b2;
+            padding: 25px;
+            font-size: 13px;
+        }
+
+        .profile-picture {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .profile-picture img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #e8edff;
+            box-shadow: 0 8px 25px rgba(49, 84, 199, 0.15);
+        }
+
+        .upload-button {
+            background: #3154c7;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .profile-picture button {
+            border: none;
+        }
+
+        @media (max-width: 650px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .btn {
+                padding: 9px 11px;
+                font-size: 12px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+
+            .profile-card {
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .page-title h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <a href="/dashboard.html" class="logo">Uni<span>Work</span></a>
+
+    <div class="header-actions">
+        <a href="/dashboard.html" class="btn btn-back">← Dashboard</a>
+        <button class="btn btn-logout" onclick="logout()">ออกจากระบบ</button>
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="page-title">
+        <h1>My Profile</h1>
+        <p>จัดการข้อมูลส่วนตัวและข้อมูลบัญชี UniWork ของคุณ</p>
+    </div>
+
+    <div id="loading" class="loading">
+        กำลังโหลดข้อมูลโปรไฟล์...
+    </div>
+
+    <div id="profileContent" style="display:none;">
+
+        <div id="message" class="message"></div>
+
+        <section class="profile-card">
+
+            <div class="profile-picture">
+                <img
+                    id="profilePreview"
+                    src="/default-profile.png"
+                    alt="Profile"
+                >
+
+                <label for="profileInput" class="upload-button">
+                    📷 เปลี่ยนรูป
+                </label>
+
+                <input
+                    type="file"
+                    id="profileInput"
+                    accept="image/png,image/jpeg,image/webp"
+                    hidden
+                >
+            </div>
+
+            <button type="button" onclick="uploadProfileImage()">
+                บันทึกรูปโปรไฟล์
+            </button>
+
+            <div class="account-info">
+                <div class="avatar" id="avatar">U</div>
+
+                <div>
+                    <h2 id="displayName">ผู้ใช้งาน</h2>
+                    <p id="displayEmail">email@example.com</p>
+                    <span class="role-badge" id="displayRole">Student</span>
+                </div>
+            </div>
+
+            <form id="profileForm">
+
+                <h3 class="section-title" id="formTitle">
+                    ข้อมูลส่วนตัว
+                </h3>
+
+                <div id="formFields" class="form-grid"></div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-cancel"
+                        onclick="loadProfile()">
+                        ยกเลิก
+                    </button>
+
+                    <button type="submit" class="btn btn-save" id="saveButton">
+                        บันทึกข้อมูล
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+
+<footer>
+    © 2026 UniWork — Part-time Jobs for Students
+</footer>
+
+<script>
+    const token = localStorage.getItem("uniwork_token");
+
+    let currentRole = "";
+    let originalData = {};
+
+    // ตรวจสอบการเข้าสู่ระบบ
+    if (!token) {
+        alert("กรุณาเข้าสู่ระบบก่อน");
+        window.location.href = "/auth.html";
+    }
+
+    function logout() {
+        localStorage.removeItem("uniwork_token");
+        localStorage.removeItem("uniwork_user");
+        window.location.href = "/auth.html";
+    }
+
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, char => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[char]);
+    }
+
+    async function apiRequest(url, options = {}) {
+        const response = await fetch(url, {
+            ...options,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+                ...(options.headers || {})
+            }
+        });
+
+        const result = await response.json();
+
+        if (response.status === 401) {
+            logout();
+            throw new Error("กรุณาเข้าสู่ระบบใหม่");
+        }
+
+        if (!response.ok || result.success === false) {
+            throw new Error(result.message || "เกิดข้อผิดพลาด");
+        }
+
+        return result;
+    }
+
+    function showMessage(text, type) {
+        const box = document.getElementById("message");
+
+        box.textContent = text;
+        box.className = `message ${type}`;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+
+    function createField(name, label, value = "", options = {}) {
+        const full = options.full ? "full" : "";
+        const required = options.required ? "required" : "";
+        const placeholder = options.placeholder || `กรอก${label}`;
+
+        let control = "";
+
+        if (options.type === "select") {
+            control = `
+                <select name="${name}" ${required}>
+                    <option value="">เลือก${label}</option>
+                    ${options.choices.map(choice => `
+                        <option value="${escapeHTML(choice)}"
+                            ${value === choice ? "selected" : ""}>
+                            ${escapeHTML(choice)}
+                        </option>
+                    `).join("")}
+                </select>
+            `;
+        } else if (options.type === "textarea") {
+            control = `
+                <textarea name="${name}" placeholder="${placeholder}">${escapeHTML(value)}</textarea>
+            `;
+        } else {
+            control = `
+                <input
+                    type="${options.type || "text"}"
+                    name="${name}"
+                    value="${escapeHTML(value)}"
+                    placeholder="${placeholder}"
+                    ${required}
+                >
+            `;
+        }
+
+        return `
+            <div class="form-group ${full}">
+                <label>${label}</label>
+                ${control}
+            </div>
+        `;
+    }
+
+    function renderStudentForm(user, profile) {
+        document.getElementById("formTitle").textContent =
+            "ข้อมูลนักศึกษา";
+
+        document.getElementById("formFields").innerHTML = `
+            ${createField("full_name", "ชื่อ-นามสกุล", user.full_name, {
+                required: true
+            })}
+
+            ${createField("phone", "เบอร์โทรศัพท์", profile.phone)}
+
+            ${createField("university", "มหาวิทยาลัย", profile.university)}
+
+            ${createField("faculty", "คณะ", profile.faculty)}
+
+            ${createField("major", "สาขาวิชา", profile.major)}
+
+            ${createField("year_level", "ชั้นปี", profile.year_level, {
+                type: "select",
+                choices: [
+                    "ปี 1", "ปี 2", "ปี 3",
+                    "ปี 4", "ปี 5 หรือมากกว่า"
+                ]
+            })}
+
+            ${createField("skills", "ทักษะ", profile.skills, {
+                type: "textarea",
+                full: true,
+                placeholder: "เช่น Microsoft Office, Graphic Design, Communication"
+            })}
+
+            ${createField("experience", "ประสบการณ์ทำงาน", profile.experience, {
+                type: "textarea",
+                full: true,
+                placeholder: "อธิบายประสบการณ์ทำงานหรือกิจกรรมที่ผ่านมา"
+            })}
+
+            ${createField("email", "อีเมลบัญชี", user.email, {
+                type: "email"
+            })}
+        `;
+
+        const emailInput = document.querySelector('[name="email"]');
+        emailInput.readOnly = true;
+        emailInput.classList.add("readonly");
+    }
+
+    function renderEmployerForm(user, profile) {
+        document.getElementById("formTitle").textContent =
+            "ข้อมูลบริษัท";
+
+        document.getElementById("formFields").innerHTML = `
+            ${createField(
+                "company_name",
+                "ชื่อบริษัท / ร้านค้า",
+                profile.company_name || user.full_name,
+                { required: true }
+            )}
+
+            ${createField(
+                "business_type",
+                "ประเภทธุรกิจ",
+                profile.business_type
+            )}
+
+            ${createField(
+                "phone",
+                "เบอร์โทรศัพท์ติดต่อ",
+                profile.phone
+            )}
+
+            ${createField(
+                "address",
+                "ที่อยู่บริษัท",
+                profile.address,
+                { type: "textarea", full: true }
+            )}
+
+            ${createField(
+                "description",
+                "รายละเอียดบริษัท",
+                profile.description,
+                { type: "textarea", full: true }
+            )}
+
+            ${createField(
+                "email",
+                "อีเมลบัญชี",
+                user.email,
+                { type: "email" }
+            )}
+        `;
+
+        const emailInput = document.querySelector('[name="email"]');
+        emailInput.readOnly = true;
+        emailInput.classList.add("readonly");
+    }
+
+    async function loadProfile() {
+        const loading = document.getElementById("loading");
+        const content = document.getElementById("profileContent");
+
+        loading.style.display = "block";
+        content.style.display = "none";
+
+        try {
+            const result = await apiRequest("/api/profile/me");
+
+            const user = result.data.user;
+            const profile = result.data.profile || {};
+            currentRole = user.role;
+
+            const profilePreview = document.getElementById("profilePreview");
+            const imageUrl = currentRole === "employer"
+                ? profile.company_logo
+                : profile.profile_image;
+
+            if (imageUrl) {
+                profilePreview.src = imageUrl + "?t=" + Date.now();
+            } else {
+                profilePreview.src = "/default-profile.png";
+            }
+
+            originalData = { ...user, ...profile };
+
+            document.getElementById("displayName").textContent =
+                user.full_name || profile.company_name || "ผู้ใช้งาน";
+
+            document.getElementById("displayEmail").textContent =
+                user.email;
+
+            document.getElementById("avatar").textContent =
+                (user.full_name || profile.company_name || "U")
+                .trim().charAt(0).toUpperCase();
+
+            if (currentRole === "student") {
+                document.getElementById("displayRole").textContent =
+                    "นักศึกษา";
+
+                renderStudentForm(user, profile);
+
+            } else if (currentRole === "employer") {
+                document.getElementById("displayRole").textContent =
+                    "นายจ้าง / ผู้ประกอบการ";
+
+                renderEmployerForm(user, profile);
+
+                document.getElementById("displayName").textContent =
+                    profile.company_name || "ข้อมูลบริษัท";
+
+                document.getElementById("avatar").textContent =
+                    (profile.company_name || "C").trim().charAt(0).toUpperCase();
+
+            } else {
+                throw new Error("ไม่พบประเภทบัญชี");
+            }
+
+            loading.style.display = "none";
+            content.style.display = "block";
+
+        } catch (error) {
+            loading.textContent = error.message;
+        }
+    }
+
+    // บันทึกข้อมูลโปรไฟล์
+    document.getElementById("profileForm")
+        .addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {};
+
+            formData.forEach((value, key) => {
+                if (key !== "email") {
+                    data[key] = value.trim();
+                }
+            });
+
+            const button = document.getElementById("saveButton");
+
+            button.disabled = true;
+            button.textContent = "กำลังบันทึก...";
+
+            try {
+                const result = await apiRequest("/api/profile/me", {
+                    method: "PUT",
+                    body: JSON.stringify(data)
+                });
+
+                showMessage(
+                    result.message || "บันทึกข้อมูลสำเร็จ",
+                    "success"
+                );
+
+                await loadProfile();
+
+            } catch (error) {
+                showMessage(error.message, "error");
+
+            } finally {
+                button.disabled = false;
+                button.textContent = "บันทึกข้อมูล";
+            }
+        });
+
+    loadProfile();
+</script>
+
+<script>
+const profileInput = document.getElementById("profileInput");
+const profilePreview = document.getElementById("profilePreview");
+
+let selectedProfileImage = null;
+
+profileInput.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+        alert("รูปภาพต้องมีขนาดไม่เกิน 2 MB");
+        this.value = "";
+        return;
+    }
+
+    selectedProfileImage = file;
+
+    profilePreview.src = URL.createObjectURL(file);
+});
+
+async function uploadProfileImage() {
+    if (!selectedProfileImage) {
+        alert("กรุณาเลือกรูปภาพก่อน");
+        return;
+    }
+
+    const token = localStorage.getItem("uniwork_token");
+
+    const formData = new FormData();
+
+    formData.append("profile_image", selectedProfileImage);
+
+    try {
+        const response = await fetch("/api/upload", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(result.message);
+        }
+
+        profilePreview.src =
+            result.image_url + "?t=" + Date.now();
+
+        selectedProfileImage = null;
+        profileInput.value = "";
+
+        alert("บันทึกรูปโปรไฟล์สำเร็จ");
+
+    } catch (error) {
+        alert(error.message);
+    }
+}
+</script>
+
+</body>
+</html>

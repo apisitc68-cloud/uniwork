@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UniWork | Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Prompt', sans-serif;
+}
+
+body {
+    background: #f5f7fc;
+    color: #1e293b;
+}
+
+header {
+    height: 75px;
+    background: white;
+    border-bottom: 1px solid #e8edf5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #3154c7 !important;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #16b8c4 !important;
+}
+
+.logo:hover {
+    opacity: 0.85;
+    transition: 0.2s;
+}
+
+.user-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-name {
+    font-size: 14px;
+    color: #475569;
+}
+
+button {
+    cursor: pointer;
+    border: 0;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.logout {
+    background: #fff1f2;
+    color: #e11d48;
+    padding: 9px 17px;
+    border-radius: 9px;
+    font-weight: 500;
+}
+
+.history-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8edff;
+    color: #3154c7;
+    padding: 9px 15px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.history-btn:hover {
+    background: #dbe5ff;
+    transform: translateY(-2px);
+}
+
+main {
+    max-width: 1150px;
+    margin: 35px auto;
+    padding: 0 22px;
+}
+
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.welcome h1 {
+    font-size: 27px;
+    margin-bottom: 5px;
+}
+
+.muted {
+    color: #8491a5;
+    font-size: 14px;
+}
+
+.badge {
+    background: #e8edff;
+    color: #3154c7;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 13px;
+}
+
+.panel {
+    background: white;
+    border: 1px solid #edf0f6;
+    border-radius: 17px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px #1e3a8a08;
+}
+
+.panel h2 {
+    font-size: 19px;
+    margin-bottom: 18px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #e1e7f0;
+    border-radius: 9px;
+    font-size: 14px;
+    outline: none;
+    background: white;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #4264d8;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.primary {
+    background: #3154c7;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 9px;
+    font-weight: 500;
+}
+
+.primary:hover {
+    background: #233f9e;
+}
+
+.primary:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.job {
+    border: 1px solid #e9edf4;
+    border-radius: 14px;
+    padding: 20px;
+    transition: .2s;
+    overflow-wrap: anywhere;
+}
+
+.job:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px #1e3a8a12;
+}
+
+.job h3 {
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.company {
+    font-size: 13px;
+    color: #3154c7;
+    margin-bottom: 13px;
+}
+
+.job-info {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 2;
+}
+
+.salary {
+    font-weight: 600;
+    color: #15966b;
+    margin: 12px 0;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.closed {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.delete {
+    background: #fff1f2;
+    color: #e11d48;
+    padding: 9px 13px;
+    border-radius: 8px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 7px;
+    color: #475569;
+}
+
+.field.full {
+    grid-column: 1/-1;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 17px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.empty {
+    text-align: center;
+    padding: 35px;
+    color: #94a3b8;
+    grid-column: 1/-1;
+}
+
+.notice {
+    padding: 12px 15px;
+    border-radius: 9px;
+    font-size: 13px;
+    margin-bottom: 15px;
+    display: none;
+}
+
+.notice.success {
+    display: block;
+    background: #dcfce7;
+    color: #166534;
+}
+
+.notice.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================
+   NOTIFICATION STYLE
+========================= */
+
+.notification-wrapper {
+    position: relative;
+}
+
+.notification-btn {
+    position: relative;
+    background: #f1f5ff;
+    color: #3154c7;
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+    font-size: 20px;
+    transition: .2s;
+}
+
+.notification-btn:hover {
+    background: #e3eaff;
+    transform: scale(1.05);
+}
+
+.notification-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #ef4444;
+    color: white;
+    font-size: 10px;
+    min-width: 19px;
+    height: 19px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 2px solid white;
+}
+
+.notification-panel {
+    position: absolute;
+    top: 53px;
+    right: 0;
+    width: 360px;
+    max-width: calc(100vw - 30px);
+    background: white;
+    border: 1px solid #e8edf5;
+    border-radius: 15px;
+    box-shadow: 0 12px 35px #1e3a8a20;
+    z-index: 20;
+    overflow: hidden;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #edf0f6;
+}
+
+.notification-header h3 {
+    font-size: 15px;
+}
+
+.notification-header button {
+    background: none;
+    color: #3154c7;
+    font-size: 12px;
+}
+
+.notification-header button:hover {
+    text-decoration: underline;
+}
+
+.notification-list {
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f0f2f7;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.notification-item:hover {
+    background: #f8faff;
+}
+
+.notification-item.unread {
+    background: #eff6ff;
+}
+
+.notification-item h4 {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.notification-item p {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.notification-item small {
+    display: block;
+    margin-top: 7px;
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+.notification-empty {
+    text-align: center;
+    padding: 30px 15px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+/* ระบบให้คะแนนดาว */
+.rating-box {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #fffaf0;
+    border: 1px solid #f5dfaa;
+}
+
+.rating-stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.rating-stars input {
+    display: none;
+}
+
+.rating-stars label {
+    width: auto;
+    padding: 0;
+    border: none;
+    background: none;
+    color: #cbd5e1;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.rating-stars label:hover,
+.rating-stars label:hover ~ label,
+.rating-stars input:checked ~ label {
+    color: #f5b301;
+}
+
+.rating-submit {
+    margin-top: 10px;
+}
+
+@media(max-width:850px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:600px) {
+    header {
+        padding: 0 17px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .user-area {
+        gap: 10px;
+    }
+
+    .user-name {
+        display: none;
+    }
+
+    main {
+        margin: 25px auto;
+    }
+
+    .welcome {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .toolbar {
+        flex-direction: column;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+
+    .notification-panel {
+        right: -105px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">Uni<span>Work.</span></div>
+
+    <div class="user-area">
+
+        <span class="user-name" id="userName">
+            กำลังโหลด...
+        </span>
+
+        <!-- Notification Button -->
+        <div class="notification-wrapper hidden" id="notificationWrapper">
+
+            <button
+                class="notification-btn"
+                id="notificationButton"
+                onclick="toggleNotifications()"
+                title="การแจ้งเตือน">
+
+                🔔
+
+                <span
+                    class="notification-count hidden"
+                    id="notificationCount">0</span>
+
+            </button>
+
+            <!-- Notification Dropdown -->
+            <div
+                class="notification-panel hidden"
+                id="notificationPanel">
+
+                <div class="notification-header">
+
+                    <h3>🔔 การแจ้งเตือน</h3>
+
+                    <button onclick="markAllNotificationsRead()">
+                        อ่านทั้งหมด
+                    </button>
+
+                </div>
+
+                <div
+                    class="notification-list"
+                    id="notificationList">
+
+                    <div class="notification-empty">
+                        กำลังโหลดการแจ้งเตือน...
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <a href="/student-work.html" class="history-btn" id="studentWorkMenu">
+            💼 บัญชีงานของฉัน
+        </a>
+
+        <a href="/profile.html" class="profile-btn">
+    👤 โปรไฟล์ของฉัน
+</a>
+
+        <a href="/employer-work.html" class="profile-btn hidden" id="employerWorkMenu">
+            🏢 บัญชีงานของฉัน
+        </a>
+
+        <a href="/history.html" class="history-btn" id="historyMenu">
+            📋 ประวัติสมัครงาน
+        </a>
+
+<button class="logout" onclick="logout()">
+    ออกจากระบบ
+</button>
+
+    </div>
+
+</header>
+
+<main>
+
+    <section class="welcome">
+
+        <div>
+            <h1 id="welcomeTitle">ยินดีต้อนรับ</h1>
+
+            <p class="muted" id="welcomeSubtitle">
+                จัดการการใช้งาน UniWork ของคุณ
+            </p>
+        </div>
+
+        <span class="badge" id="roleBadge">
+            บัญชีผู้ใช้
+        </span>
+
+    </section>
+
+    <div id="notice" class="notice"></div>
+
+    <!-- =========================
+         STUDENT DASHBOARD
+    ========================== -->
+
+    <section id="studentSection" class="hidden">
+
+        <div class="panel">
+
+            <h2>ค้นหางานพาร์ทไทม์</h2>
+
+            <div class="toolbar">
+
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="ค้นหาตำแหน่งงาน บริษัท หรือสถานที่..."
+                    oninput="renderStudentJobs()">
+
+                <select
+                    id="categoryFilter"
+                    onchange="renderStudentJobs()">
+
+                    <option value="">ทุกประเภทงาน</option>
+                    <option value="บริการ">บริการ</option>
+                    <option value="ร้านอาหาร">ร้านอาหาร</option>
+                    <option value="ขายสินค้า">ขายสินค้า</option>
+                    <option value="ทั่วไป">งานทั่วไป</option>
+                    <option value="อื่นๆ">อื่นๆ</option>
+
+                </select>
+
+            </div>
+
+            <div class="grid" id="studentJobs">
+
+                <div class="empty">
+                    กำลังโหลดประกาศงาน...
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <h2>ประวัติการสมัครงานของฉัน</h2>
+
+            <div class="grid" id="myApplications">
+
+                <div class="empty">
+                    กำลังโหลดประวัติ...
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+         EMPLOYER DASHBOARD
+    ========================== -->
+
+    <section id="employerSection" class="hidden">
+
+        <div class="panel">
+
+            <h2>＋ เพิ่มประกาศงานใหม่</h2>
+
+            <form id="jobForm">
+
+                <div class="form-grid">
+
+                    <div class="field full">
+                        <label>ชื่อตำแหน่งงาน *</label>
+
+                        <input
+                            id="jobTitle"
+                            required
+                            placeholder="เช่น พนักงานเสิร์ฟพาร์ทไทม์">
+                    </div>
+
+                    <div class="field">
+                        <label>ประเภทงาน</label>
+
+                        <input
+                            id="jobCategory"
+                            placeholder="เช่น ร้านอาหาร">
+                    </div>
+
+                    <div class="field">
+                        <label>สถานที่ทำงาน</label>
+
+                        <input
+                            id="jobLocation"
+                            placeholder="เช่น รังสิต ปทุมธานี">
+                    </div>
+
+                    <div class="field">
+                        <label>ค่าจ้างขั้นต่ำ (บาท)</label>
+
+                        <input
+                            id="salaryMin"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="เช่น 50">
+                    </div>
+
+                    <div class="field">
+                        <label>ค่าจ้างสูงสุด (บาท)</label>
+
+                        <input
+                            id="salaryMax"
+                            type="number"
+                            min="0"
+                            step="0.01"
+                            placeholder="เช่น 80">
+                    </div>
+
+                    <div class="field">
+                        <label>ประเภทการจ่ายเงิน</label>
+
+                        <select id="payType">
+
+                            <option value="hourly">รายชั่วโมง</option>
+                            <option value="daily">รายวัน</option>
+                            <option value="monthly">รายเดือน</option>
+
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label>เวลาทำงาน</label>
+
+                        <input
+                            id="workSchedule"
+                            placeholder="เช่น 17:00 - 22:00 น.">
+                    </div>
+
+                    <div class="field full">
+                        <label>รายละเอียดงาน</label>
+
+                        <textarea
+                            id="jobDescription"
+                            placeholder="อธิบายหน้าที่และคุณสมบัติของผู้สมัคร"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="actions">
+
+                    <button type="submit" class="primary">
+                        ลงประกาศงาน
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="panel">
+
+            <h2>ประกาศงานของฉัน</h2>
+
+            <div class="grid" id="myJobs">
+
+                <div class="empty">
+                    กำลังโหลดประกาศงาน...
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel">
+
+            <h2>รายชื่อผู้สมัครงาน</h2>
+
+            <div class="grid" id="applicantsList">
+
+                <div class="empty">
+                    เลือกประกาศงานเพื่อดูผู้สมัคร
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+
+// =========================
+// INITIAL SETTINGS
+// =========================
+
+const token = localStorage.getItem("uniwork_token");
+
+let currentUser = null;
+let allJobs = [];
+let notificationTimer = null;
+
+if (!token) {
+    window.location.href = "/auth.html";
+}
+
+try {
+    currentUser = JSON.parse(
+        localStorage.getItem("uniwork_user") || "null"
+    );
+} catch (error) {
+    currentUser = null;
+}
+
+if (!currentUser || !["student", "employer"].includes(currentUser.role)) {
+
+    localStorage.removeItem("uniwork_token");
+    localStorage.removeItem("uniwork_user");
+
+    window.location.href = "/auth.html";
+}
+
+document.getElementById("userName").textContent =
+    currentUser.full_name || currentUser.email || "ผู้ใช้งาน";
+
+
+// =========================
+// COMMON FUNCTIONS
+// =========================
+
+function showNotice(text, type = "success") {
+
+    const box = document.getElementById("notice");
+
+    box.textContent = text;
+    box.className = "notice " + type;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    setTimeout(() => {
+        box.className = "notice";
+    }, 4500);
+}
+
+
+async function apiRequest(url, options = {}) {
+
+    const response = await fetch(url, {
+
+        ...options,
+
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token,
+            ...(options.headers || {})
+        }
+
+    });
+
+    const result = await response.json();
+
+    if (response.status === 401) {
+        logout();
+        throw new Error("เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่");
+    }
+
+    if (!response.ok || result.success === false) {
+        throw new Error(result.message || "เกิดข้อผิดพลาด");
+    }
+
+    return result;
+}
+
+
+function formatSalary(job) {
+
+    if (job.salary_min == null && job.salary_max == null) {
+        return "ค่าจ้างตามตกลง";
+    }
+
+    const min = job.salary_min == null
+        ? null
+        : Number(job.salary_min);
+
+    const max = job.salary_max == null
+        ? null
+        : Number(job.salary_max);
+
+    const unit = {
+        hourly: "/ชั่วโมง",
+        daily: "/วัน",
+        monthly: "/เดือน"
+    }[job.pay_type] || "";
+
+    if (min !== null && max !== null) {
+        return `${min.toLocaleString()} - ${max.toLocaleString()} บาท${unit}`;
+    }
+
+    if (min !== null) {
+        return `เริ่มต้น ${min.toLocaleString()} บาท${unit}`;
+    }
+
+    return `สูงสุด ${max.toLocaleString()} บาท${unit}`;
+}
+
+
+function escapeHTML(value) {
+
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+
+    })[char]);
+}
+
+
+// =========================
+// NOTIFICATION SYSTEM
+// =========================
+
+// เปิด / ปิดหน้าต่างแจ้งเตือน
+function toggleNotifications() {
+
+    const panel = document.getElementById("notificationPanel");
+
+    panel.classList.toggle("hidden");
+
+    if (!panel.classList.contains("hidden")) {
+        loadNotifications();
+    }
+
+}
+
+
+// โหลดจำนวนแจ้งเตือนที่ยังไม่ได้อ่าน
+async function loadUnreadCount() {
+
+    try {
+
+        const result = await apiRequest(
+            "/api/notifications/unread-count"
+        );
+
+        const badge = document.getElementById("notificationCount");
+
+        const count = Number(result.count) || 0;
+
+        badge.textContent = count > 99 ? "99+" : count;
+
+        badge.classList.toggle("hidden", count === 0);
+
+    } catch (error) {
+
+        console.error("Load unread count error:", error);
+
+    }
+
+}
+
+
+// โหลดรายการแจ้งเตือน
+async function loadNotifications() {
+
+    const container = document.getElementById("notificationList");
+
+    container.innerHTML = `
+        <div class="notification-empty">
+            กำลังโหลด...
+        </div>
+    `;
+
+    try {
+
+        const result = await apiRequest("/api/notifications");
+
+        const notifications = result.data || [];
+
+        if (notifications.length === 0) {
+
+            container.innerHTML = `
+                <div class="notification-empty">
+                    🔔<br><br>
+                    ยังไม่มีการแจ้งเตือน
+                </div>
+            `;
+
+            await loadUnreadCount();
+
+            return;
+        }
+
+        container.innerHTML = notifications.map(item => {
+
+            const date = new Date(item.created_at);
+
+            const dateText = isNaN(date.getTime())
+                ? ""
+                : date.toLocaleString("th-TH");
+
+            const icon = item.type === "accepted"
+                ? "✅"
+                : item.type === "rejected"
+                    ? "❌"
+                    : "🔔";
+
+            return `
+
+                <div
+                    class="notification-item ${item.is_read ? "" : "unread"}"
+                    onclick="markNotificationRead(${Number(item.id)})">
+
+                    <h4>
+                        ${icon}
+                        ${escapeHTML(item.title)}
+                    </h4>
+
+                    <p>
+                        ${escapeHTML(item.message)}
+                    </p>
+
+                    <small>
+                        ${escapeHTML(dateText)}
+                    </small>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+        await loadUnreadCount();
+
+    } catch (error) {
+
+        console.error("Load notifications error:", error);
+
+        container.innerHTML = `
+            <div class="notification-empty">
+                ${escapeHTML(error.message)}
+            </div>
+        `;
+
+    }
+
+}
+
+
+// อ่านแจ้งเตือนทีละรายการ
+async function markNotificationRead(id) {
+
+    try {
+
+        await apiRequest(
+            "/api/notifications/" + id + "/read",
+            {
+                method: "PATCH"
+            }
+        );
+
+        await loadNotifications();
+
+    } catch (error) {
+
+        showNotice(error.message, "error");
+
+    }
+
+}
+
+
+// อ่านแจ้งเตือนทั้งหมด
+async function markAllNotificationsRead() {
+
+    try {
+
+        await apiRequest(
+            "/api/notifications/read-all",
+            {
+                method: "PATCH"
+            }
+        );
+
+        await loadNotifications();
+
+        showNotice("อ่านการแจ้งเตือนทั้งหมดแล้ว");
+
+    } catch (error) {
+
+        showNotice(error.message, "error");
+
+    }
+
+}
+
+
+// ปิดหน้าต่างเมื่อคลิกพื้นที่อื่น
+document.addEventListener("click", function(event) {
+
+    const wrapper = document.getElementById("notificationWrapper");
+
+    const panel = document.getElementById("notificationPanel");
+
+    if (wrapper && !wrapper.contains(event.target)) {
+        panel.classList.add("hidden");
+    }
+
+});
+
+
+// =========================
+// STUDENT FUNCTIONS
+// =========================
+
+async function loadStudentJobs() {
+
+    const container = document.getElementById("studentJobs");
+
+    try {
+
+        const result = await apiRequest("/api/jobs");
+
+        allJobs = result.data || [];
+
+        renderStudentJobs();
+
+    } catch (error) {
+
+        container.innerHTML =
+            `<div class="empty">${escapeHTML(error.message)}</div>`;
+
+    }
+
+}
+
+
+function renderStudentJobs() {
+
+    const keyword = document.getElementById("searchInput").value
+        .trim()
+        .toLowerCase();
+
+    const category = document.getElementById("categoryFilter").value;
+
+    const filtered = allJobs.filter(job => {
+
+        const text = [
+
+            job.title,
+            job.company_name,
+            job.location,
+            job.category
+
+        ].join(" ").toLowerCase();
+
+        return text.includes(keyword) &&
+            (!category || (job.category || "").includes(category));
+
+    });
+
+    const container = document.getElementById("studentJobs");
+
+    if (filtered.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                ไม่พบประกาศงานที่ตรงกับการค้นหา
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = filtered.map(job => `
+
+        <article class="job">
+
+            <h3>${escapeHTML(job.title)}</h3>
+
+            <div class="company">
+                ${escapeHTML(job.company_name || "ไม่ระบุบริษัท")}
+            </div>
+
+            <div class="job-info">
+
+                📍 ${escapeHTML(job.location || "ไม่ระบุสถานที่")}<br>
+
+                🏷️ ${escapeHTML(job.category || "ไม่ระบุประเภทงาน")}<br>
+
+                🕒 ${escapeHTML(job.work_schedule || "เวลาทำงานตามตกลง")}
+
+            </div>
+
+            <div class="salary">
+                ${escapeHTML(formatSalary(job))}
+            </div>
+
+            <span class="status ${job.status === "open" ? "" : "closed"}">
+
+                ${job.status === "open" ? "เปิดรับสมัคร" : "ปิดรับสมัคร"}
+
+            </span>
+
+            <p class="muted" style="margin-top:12px">
+
+                ${escapeHTML(job.description || "ไม่มีรายละเอียดเพิ่มเติม")}
+
+            </p>
+
+            ${job.status === "open" ? `
+
+                <button
+                    class="primary"
+                    style="width:100%;margin-top:15px"
+                    onclick="applyJob(${Number(job.id)}, this)">
+
+                    สมัครงานนี้
+
+                </button>
+
+            ` : ""}
+
+        </article>
+
+    `).join("");
+
+}
+
+
+async function applyJob(jobId, button) {
+
+    if (!confirm("ยืนยันการสมัครงานนี้หรือไม่?")) {
+        return;
+    }
+
+    if (button) {
+        button.disabled = true;
+        button.textContent = "กำลังสมัคร...";
+    }
+
+    const message = prompt(
+        "เขียนข้อความแนะนำตัวถึงผู้ประกอบการ (ไม่บังคับ)"
+    );
+
+    if (message === null) {
+
+        if (button) {
+            button.disabled = false;
+            button.textContent = "สมัครงานนี้";
+        }
+
+        return;
+    }
+
+    try {
+
+        const result = await apiRequest(
+            "/api/applications/" + jobId,
+            {
+                method: "POST",
+                body: JSON.stringify({ message })
+            }
+        );
+
+        showNotice(result.message || "สมัครงานสำเร็จ");
+
+        await loadMyApplications();
+
+    } catch (error) {
+
+        showNotice(error.message, "error");
+
+    } finally {
+
+        if (button) {
+            button.disabled = false;
+            button.textContent = "สมัครงานนี้";
+        }
+
+    }
+
+}
+
+
+async function loadMyApplications() {
+
+    const container = document.getElementById("myApplications");
+
+    try {
+
+        const result = await apiRequest("/api/applications/my");
+
+        const applications = result.data || [];
+
+        if (applications.length === 0) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    คุณยังไม่มีประวัติการสมัครงาน
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML = applications.map(app => {
+
+            const statusText = {
+
+                pending: "รอการพิจารณา",
+                accepted: "ได้รับการตอบรับ",
+                rejected: "ไม่ผ่านการพิจารณา",
+                completed: "ทำงานเสร็จแล้ว"
+
+            };
+
+            const statusClass = app.status === "accepted"
+                ? ""
+                : app.status === "rejected"
+                    ? "closed"
+                    : "";
+
+            return `
+
+                <article class="job">
+
+                    <h3>${escapeHTML(app.title)}</h3>
+
+                    <div class="company">
+                        ${escapeHTML(app.company_name || "ไม่ระบุบริษัท")}
+                    </div>
+
+                    <div class="job-info">
+                        📍 ${escapeHTML(app.location || "ไม่ระบุสถานที่")}
+                    </div>
+
+                    <div class="salary">
+                        ${escapeHTML(formatSalary(app))}
+                    </div>
+
+                    <span class="status ${statusClass}">
+                        ${statusText[app.status] || "ไม่ทราบสถานะ"}
+                    </span>
+
+                    ${app.status === "completed" ? `
+                        <div class="rating-box" id="rating-box-${Number(app.job_id)}">
+
+                            <strong>⭐ ให้คะแนนงานนี้</strong>
+
+                            <p class="muted">
+                                ร่วมแบ่งปันประสบการณ์การทำงานของคุณ
+                            </p>
+
+                            <div class="rating-stars">
+                                ${[5,4,3,2,1].map(n => `
+                                    <input
+                                        type="radio"
+                                        id="rating-${Number(app.job_id)}-${n}"
+                                        name="rating-${Number(app.job_id)}"
+                                        value="${n}">
+
+                                    <label
+                                        for="rating-${Number(app.job_id)}-${n}">
+                                        ★
+                                    </label>
+                                `).join("")}
+                            </div>
+
+                            <textarea
+                                id="review-${Number(app.job_id)}"
+                                placeholder="เขียนความคิดเห็นเพิ่มเติม (ไม่บังคับ)"
+                                maxlength="1000">
+                            </textarea>
+
+                            <button
+                                class="primary rating-submit"
+                                onclick="submitJobRating(${Number(app.job_id)}, this)">
+                                ส่งคะแนน
+                            </button>
+
+                        </div>
+                    ` : ""}
+
+                </article>
+
+            `;
+
+        }).join("");
+
+    } catch (error) {
+
+        container.innerHTML =
+            `<div class="empty">${escapeHTML(error.message)}</div>`;
+
+    }
+
+}
+
+
+// =====================================
+// STUDENT: ส่งคะแนนงาน
+// =====================================
+
+async function submitJobRating(jobId, button) {
+
+    const selected = document.querySelector(
+        `input[name="rating-${jobId}"]:checked`
+    );
+
+    const review = document.getElementById(
+        `review-${jobId}`
+    ).value.trim();
+
+    if (!selected) {
+        showNotice("กรุณาเลือกคะแนน 1–5 ดาว", "error");
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "กำลังส่งคะแนน...";
+
+    try {
+
+        const result = await apiRequest(
+            `/api/applications/${jobId}/rating`,
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    rating: Number(selected.value),
+                    review: review
+                })
+            }
+        );
+
+        document.getElementById(
+            `rating-box-${jobId}`
+        ).innerHTML = `
+            <strong>⭐ ขอบคุณสำหรับการรีวิว</strong>
+            <p class="muted">
+                ${escapeHTML(result.message)}
+            </p>
+        `;
+
+        showNotice("ส่งคะแนนเรียบร้อยแล้ว");
+
+    } catch (error) {
+
+        showNotice(error.message, "error");
+
+        button.disabled = false;
+        button.textContent = "ส่งคะแนน";
+
+    }
+}
+
+
+// =========================
+// EMPLOYER FUNCTIONS
+// =========================
+
+async function loadMyJobs() {
+
+    const container = document.getElementById("myJobs");
+
+    try {
+
+        const result = await apiRequest("/api/jobs/my");
+
+        const jobs = result.data || [];
+
+        if (jobs.length === 0) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    คุณยังไม่มีประกาศงาน เริ่มลงประกาศงานแรกได้เลย
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML = jobs.map(job => `
+
+            <article class="job">
+
+                <h3>${escapeHTML(job.title)}</h3>
+
+                <div class="job-info">
+
+                    📍 ${escapeHTML(job.location || "ไม่ระบุสถานที่")}<br>
+
+                    🏷️ ${escapeHTML(job.category || "ไม่ระบุประเภทงาน")}<br>
+
+                    🕒 ${escapeHTML(job.work_schedule || "ไม่ระบุเวลา")}
+
+                </div>
+
+                <div class="salary">
+                    ${escapeHTML(formatSalary(job))}
+                </div>
+
+                <span class="status ${job.status === "open" ? "" : "closed"}">
+
+                    ${job.status === "open" ? "เปิดรับสมัคร" : "ปิดรับสมัคร"}
+
+                </span>
+
+                <br>
+
+                <button
+                    class="primary"
+                    style="margin-top:12px"
+                    onclick="loadApplicants(${Number(job.id)})">
+
+                    ดูผู้สมัคร
+
+                </button>
+
+                <br>
+
+                <button
+                    class="delete"
+                    onclick="deleteJob(${Number(job.id)})">
+
+                    ลบประกาศงาน
+
+                </button>
+
+            </article>
+
+        `).join("");
+
+    } catch (error) {
+
+        container.innerHTML =
+            `<div class="empty">${escapeHTML(error.message)}</div>`;
+
+    }
+
+}
+
+
+// ดูรายชื่อผู้สมัคร
+async function loadApplicants(jobId) {
+
+    const container = document.getElementById("applicantsList");
+
+    container.innerHTML = `
+        <div class="empty">
+            กำลังโหลดรายชื่อผู้สมัคร...
+        </div>
+    `;
+
+    try {
+
+        const result = await apiRequest(
+            "/api/applications/job/" + jobId
+        );
+
+        const applicants = result.data || [];
+
+        if (applicants.length === 0) {
+
+            container.innerHTML = `
+                <div class="empty">
+                    ยังไม่มีผู้สมัครงานนี้
+                </div>
+            `;
+
+            return;
+        }
+
+        container.innerHTML = applicants.map(app => {
+
+            const applicationId = Number(
+                app.application_id ?? app.id
+            );
+
+            if (!Number.isInteger(applicationId) || applicationId <= 0) {
+
+                return `
+                    <article class="job">
+
+                        <h3>${escapeHTML(app.full_name)}</h3>
+
+                        <p class="muted">
+                            ไม่พบรหัสใบสมัคร กรุณาตรวจสอบข้อมูล
+                        </p>
+
+                    </article>
+                `;
+
+            }
+
+            return `
+
+                <article class="job">
+
+                    <h3>${escapeHTML(app.full_name)}</h3>
+
+                    <div class="job-info">
+
+                        อีเมล: ${escapeHTML(app.email)}<br>
+
+                        ข้อความแนะนำตัว:
+                        ${escapeHTML(app.message || "-")}
+
+                    </div>
+
+                    <span class="status ${
+                        app.status === "rejected" ? "closed" : ""
+                    }">
+
+                        ${app.status === "pending"
+                            ? "รอพิจารณา"
+                            : app.status === "accepted"
+                                ? "ตอบรับแล้ว"
+                                : app.status === "completed"
+                                    ? "ทำงานเสร็จแล้ว"
+                                    : "ปฏิเสธแล้ว"}
+
+                    </span>
+
+                    <div class="actions">
+
+                        <button
+                            class="primary"
+                            ${["accepted", "completed"].includes(app.status) ? "disabled" : ""}
+                            onclick="updateApplication(${applicationId}, 'accepted', ${Number(jobId)})">
+
+                            ตอบรับ
+
+                        </button>
+
+                        <button
+                            class="delete"
+                            ${["rejected", "completed"].includes(app.status) ? "disabled" : ""}
+                            onclick="updateApplication(${applicationId}, 'rejected', ${Number(jobId)})">
+
+                            ปฏิเสธ
+
+                        </button>
+
+                        <button
+                            class="primary"
+                            ${app.status !== "accepted" ? "disabled" : ""}
+                            onclick="updateApplication(${applicationId}, 'completed', ${Number(jobId)})">
+
+                            ✓ ยืนยันทำงานเสร็จ
+
+                        </button>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
+
+        container.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    } catch (error) {
+
+        console.error("Load applicants error:", error);
+
+        container.innerHTML =
+            `<div class="empty">${escapeHTML(error.message)}</div>`;
+
+    }
+
+}
+
+
+// ตอบรับหรือปฏิเสธผู้สมัคร
+async function updateApplication(applicationId, status, jobId) {
+
+    applicationId = Number(applicationId);
+
+    if (!Number.isInteger(applicationId) || applicationId <= 0) {
+
+        showNotice(
+            "รหัสใบสมัครไม่ถูกต้อง กรุณารีเฟรชหน้าเว็บ",
+            "error"
+        );
+
+        return;
+    }
+
+    const text = status === "accepted"
+        ? "ตอบรับผู้สมัคร"
+        : status === "completed"
+            ? "ยืนยันว่าผู้สมัครทำงานเสร็จแล้ว"
+            : "ปฏิเสธผู้สมัคร";
+
+    if (!confirm(`ต้องการ${text}ใช่หรือไม่?`)) {
+        return;
+    }
+
+    try {
+
+        const result = await apiRequest(
+            `/api/applications/${applicationId}/status`,
+            {
+                method: "PATCH",
+                body: JSON.stringify({ status })
+            }
+        );
+
+        showNotice(result.message || "อัปเดตสถานะสำเร็จ");
+
+        await loadApplicants(jobId);
+
+    } catch (error) {
+
+        console.error("Update application error:", error);
+
+        showNotice(error.message, "error");
+
+    }
+
+}
+
+
+// เพิ่มประกาศงาน
+document.getElementById("jobForm").addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const salaryMin = document.getElementById("salaryMin").value;
+
+    const salaryMax = document.getElementById("salaryMax").value;
+
+    const data = {
+
+        title: document.getElementById("jobTitle").value.trim(),
+
+        category: document.getElementById("jobCategory").value.trim(),
+
+        location: document.getElementById("jobLocation").value.trim(),
+
+        salary_min: salaryMin === "" ? null : Number(salaryMin),
+
+        salary_max: salaryMax === "" ? null : Number(salaryMax),
+
+        pay_type: document.getElementById("payType").value,
+
+        work_schedule: document.getElementById("workSchedule").value.trim(),
+
+        description: document.getElementById("jobDescription").value.trim()
+
+    };
+
+    if (
+        data.salary_min !== null &&
+        data.salary_max !== null &&
+        data.salary_min > data.salary_max
+    ) {
+
+        showNotice(
+            "ค่าจ้างขั้นต่ำต้องไม่มากกว่าค่าสูงสุด",
+            "error"
+        );
+
+        return;
+    }
+
+    try {
+
+        const result = await apiRequest("/api/jobs", {
+
+            method: "POST",
+
+            body: JSON.stringify(data)
+
+        });
+
+        showNotice(result.message || "ลงประกาศงานสำเร็จ");
+
+        this.reset();
+
+        await loadMyJobs();
+
+    } catch (error) {
+
+        showNotice(error.message, "error");
+
+    }
+
+});
+
+
+// ลบประกาศงาน
+async function deleteJob(id) {
+
+    if (!confirm("ต้องการลบประกาศงานนี้ใช่หรือไม่?")) {
+        return;
+    }
+
+    try {
+
+        const result = await apiRequest("/api/jobs/" + id, {
+
+            method: "DELETE"
+
+        });
+
+        showNotice(result.message || "ลบประกาศงานสำเร็จ");
+
+        await loadMyJobs();
+
+        document.getElementById("applicantsList").innerHTML = `
+            <div class="empty">
+                เลือกประกาศงานเพื่อดูผู้สมัคร
+            </div>
+        `;
+
+    } catch (error) {
+
+        showNotice(error.message, "error");
+
+    }
+
+}
+
+
+// =========================
+// LOGOUT
+// =========================
+
+function logout() {
+
+    if (notificationTimer) {
+        clearInterval(notificationTimer);
+    }
+
+    localStorage.removeItem("uniwork_token");
+
+    localStorage.removeItem("uniwork_user");
+
+    window.location.href = "/auth.html";
+
+}
+
+
+// =========================
+// INITIALIZE DASHBOARD
+// =========================
+
+if (currentUser.role === "employer") {
+    document.getElementById("employerWorkMenu").classList.remove("hidden");
+} else {
+    document.getElementById("employerWorkMenu").classList.add("hidden");
+}
+
+if (currentUser.role === "student") {
+
+    // เปิดใช้งาน Notification
+    document.getElementById("notificationWrapper")
+        .classList.remove("hidden");
+
+    loadUnreadCount();
+
+    notificationTimer = setInterval(
+        loadUnreadCount,
+        30000
+    );
+
+    // เปิดหน้า Student
+    document.getElementById("studentSection")
+        .classList.remove("hidden");
+
+    document.getElementById("welcomeTitle").textContent =
+        "ค้นหางานที่ใช่สำหรับคุณ";
+
+    document.getElementById("welcomeSubtitle").textContent =
+        "เลือกงานพาร์ทไทม์ที่เหมาะกับเวลาและความสนใจของคุณ";
+
+    document.getElementById("roleBadge").textContent =
+        "นักศึกษา";
+
+    loadStudentJobs();
+
+    loadMyApplications();
+
+} else {
+
+    document.getElementById("historyMenu").classList.add("hidden");
+    document.getElementById("studentWorkMenu").classList.add("hidden");
+
+    // เปิดหน้า Employer
+    document.getElementById("employerSection")
+        .classList.remove("hidden");
+
+    document.getElementById("welcomeTitle").textContent =
+        "จัดการประกาศงานของคุณ";
+
+    document.getElementById("welcomeSubtitle").textContent =
+        "สร้างและจัดการประกาศงานเพื่อค้นหาพนักงานที่เหมาะสม";
+
+    document.getElementById("roleBadge").textContent =
+        "ผู้ประกอบการ";
+
+    loadMyJobs();
+
+}
+
+</script>
+
+</body>
+</html>

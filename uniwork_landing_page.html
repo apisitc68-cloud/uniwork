@@ -1,0 +1,2932 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UniWork | งานพาร์ทไทม์ที่ใช่ สำหรับนักศึกษา</title>
+  <meta name="description" content="ค้นหางานง่าย ได้งานจริง สร้างรายได้ไปพร้อมกับการเรียน แพลตฟอร์มงานพาร์ทไทม์สำหรับนักศึกษาอันดับ 1">
+  
+  <!-- Google Fonts: Prompt & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #1971d2;
+      --primary-hover: #135ab0;
+      --primary-dark: #0f4c94;
+      --primary-light: #eaf3ff;
+      --primary-subtle: #f0f7ff;
+      --navy: #0e274e;
+      --navy-light: #1c3d73;
+      --ink: #1e293b;
+      --muted: #64748b;
+      --light-muted: #94a3b8;
+      --border: #e2eaf4;
+      --card-bg: #ffffff;
+      --bg: #f8fbff;
+      --success: #10b981;
+      --success-bg: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-bg: #fffbeb;
+      --danger: #ef4444;
+      --danger-bg: #fef2f2;
+      --shadow-sm: 0 2px 8px rgba(16, 45, 98, 0.04);
+      --shadow: 0 10px 30px rgba(23, 105, 210, 0.08);
+      --shadow-lg: 0 20px 45px rgba(14, 39, 78, 0.12);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Prompt', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    input, select, textarea {
+      font-family: inherit;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+
+    /* Announcement Bar */
+    .top-banner {
+      background: linear-gradient(90deg, #0e274e, #1971d2);
+      color: #fff;
+      padding: 8px 16px;
+      font-size: 13px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .top-banner span.badge-pill {
+      background: #ffea79;
+      color: #0e274e;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    /* Header & Nav */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      transition: all 0.3s ease;
+    }
+    .nav-wrapper {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Brand Logo matching Poster */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+      position: relative;
+    }
+    .logo-icon-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-cap {
+      position: absolute;
+      top: -10px;
+      left: -4px;
+      font-size: 18px;
+      transform: rotate(-15deg);
+      filter: drop-shadow(0 2px 4px rgba(25, 113, 210, 0.4));
+    }
+    .logo span.logo-blue {
+      color: var(--primary);
+    }
+    .logo span.logo-navy {
+      color: var(--navy);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-link {
+      color: #475569;
+      font-size: 14.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+    }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2.5px;
+      background: var(--primary);
+      border-radius: 10px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .saved-badge-btn {
+      position: relative;
+      background: #f1f6fd;
+      color: var(--navy);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 19px;
+      transition: all 0.2s;
+    }
+    .saved-badge-btn:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .saved-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--danger);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #fff;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-sm {
+      padding: 7px 14px;
+      font-size: 12.5px;
+      border-radius: 10px;
+    }
+    .btn-lg {
+      padding: 14px 28px;
+      font-size: 16px;
+      border-radius: 16px;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(25, 113, 210, 0.3);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(25, 113, 210, 0.4);
+    }
+    .btn-secondary {
+      background: #f1f6fd;
+      color: var(--navy);
+    }
+    .btn-secondary:hover {
+      background: #e2edfc;
+      color: var(--primary);
+    }
+    .btn-outline {
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: var(--navy);
+    }
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-subtle);
+    }
+    .btn-post-job {
+      background: #eef5ff;
+      color: var(--primary);
+      border: 1.5px solid #c7e0ff;
+    }
+    .btn-post-job:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      font-size: 26px;
+      color: var(--navy);
+    }
+
+    /* HERO SECTION matching poster */
+    .hero-section {
+      position: relative;
+      padding: 60px 0 50px;
+      background: radial-gradient(circle at 80% 15%, #ddecff 0%, transparent 40%),
+                  radial-gradient(circle at 10% 80%, #edf5ff 0%, transparent 35%),
+                  linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Hand-drawn note styling */
+    .hand-note {
+      font-family: 'Caveat', cursive, 'Prompt';
+      font-size: 22px;
+      color: var(--primary);
+      font-weight: 700;
+      position: absolute;
+      transform: rotate(-6deg);
+      user-select: none;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-shadow: 0 1px 2px rgba(25, 113, 210, 0.15);
+    }
+    .note-one {
+      top: -38px;
+      right: 40px;
+    }
+    .note-two {
+      bottom: -32px;
+      right: 15px;
+      transform: rotate(4deg);
+    }
+
+    .hero-brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 13.5px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      border: 1px solid #d4e7ff;
+    }
+
+    .hero-title {
+      font-size: clamp(34px, 4.4vw, 54px);
+      line-height: 1.2;
+      color: var(--navy);
+      font-weight: 800;
+      letter-spacing: -1.2px;
+      margin-bottom: 16px;
+    }
+    .hero-title .highlight-blue {
+      color: var(--primary);
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 30px;
+      max-width: 540px;
+    }
+
+    /* Search Box in Hero */
+    .hero-search-wrapper {
+      background: #ffffff;
+      border: 2px solid #e1edfc;
+      border-radius: 20px;
+      padding: 10px 12px;
+      box-shadow: 0 16px 40px rgba(23, 105, 210, 0.08);
+      max-width: 580px;
+      margin-bottom: 30px;
+      transition: all 0.3s;
+    }
+    .hero-search-wrapper:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 16px 40px rgba(25, 113, 210, 0.16);
+    }
+    .search-inputs {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .search-icon {
+      color: var(--primary);
+      font-size: 20px;
+      padding-left: 8px;
+    }
+    .search-input-field {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      color: var(--ink);
+      background: transparent;
+    }
+    .search-input-field::placeholder {
+      color: #94a3b8;
+    }
+
+    /* Hero 4 key pills matching the image */
+    .hero-features-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 25px;
+    }
+    .feature-pill {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #e5effb;
+      border-radius: 16px;
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .feature-pill:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: #cde2fc;
+      background: #ffffff;
+    }
+    .pill-icon-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #eff6ff;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+      font-size: 19px;
+      border: 1.5px solid #ddecff;
+    }
+    .feature-pill-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+    .feature-pill-desc {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 2px;
+      display: block;
+    }
+
+    /* HERO VISUAL: Laptop & Mobile Mockup matching the poster */
+    .hero-visual-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .hero-visual-bg {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(200, 226, 255, 0.6) 0%, rgba(240, 248, 255, 0.1) 70%);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .mockup-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    /* Laptop Frame */
+    .laptop-frame {
+      background: #ffffff;
+      border-radius: 18px 18px 4px 4px;
+      border: 6px solid #1a2c47;
+      box-shadow: 0 25px 60px rgba(16, 42, 85, 0.18);
+      overflow: hidden;
+      position: relative;
+      transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+      transition: transform 0.4s ease;
+    }
+    .laptop-frame:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+    }
+    .laptop-base {
+      height: 14px;
+      background: #c3cedd;
+      border-radius: 0 0 16px 16px;
+      margin: 0 -24px;
+      position: relative;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .laptop-base::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: #99aabf;
+      border-radius: 0 0 4px 4px;
+    }
+
+    /* Screen inside laptop */
+    .screen-header {
+      background: #f1f5f9;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+    .screen-url {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2px 14px;
+      font-size: 10px;
+      color: #64748b;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .screen-body {
+      background: #fcfdff;
+      padding: 16px;
+      font-size: 12px;
+    }
+    .screen-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #edf2f7;
+    }
+    .screen-logo {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 14px;
+    }
+    .screen-menu-mini {
+      display: flex;
+      gap: 12px;
+      color: #64748b;
+      font-size: 10px;
+    }
+    .screen-hero-mini {
+      text-align: center;
+      padding: 12px 6px;
+      background: linear-gradient(135deg, #eef6ff, #f8fbff);
+      border-radius: 12px;
+      margin-bottom: 14px;
+      position: relative;
+    }
+    .screen-hero-mini h4 {
+      font-size: 15px;
+      color: var(--navy);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .screen-hero-mini p {
+      font-size: 9.5px;
+      color: #64748b;
+      margin-bottom: 10px;
+    }
+    .screen-search-mini {
+      background: #fff;
+      border: 1px solid #d5e5fa;
+      border-radius: 20px;
+      padding: 4px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 9px;
+      color: #94a3b8;
+      max-width: 240px;
+      margin: 0 auto;
+    }
+    .screen-btn-mini {
+      background: var(--primary);
+      color: white;
+      border-radius: 12px;
+      padding: 3px 8px;
+      font-size: 9px;
+      font-weight: 600;
+    }
+
+    .screen-cats-mini {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .cat-mini-tag {
+      background: #ffffff;
+      border: 1px solid #e2edf8;
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 8.5px;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* Smartphone Mockup positioned like poster */
+    .phone-mockup {
+      position: absolute;
+      right: -25px;
+      bottom: -35px;
+      width: 175px;
+      background: #ffffff;
+      border: 5px solid #102d62;
+      border-radius: 28px;
+      box-shadow: 0 25px 50px rgba(10, 32, 69, 0.28);
+      overflow: hidden;
+      z-index: 3;
+      transform: rotate(3deg);
+      transition: all 0.3s;
+    }
+    .phone-mockup:hover {
+      transform: rotate(0deg) scale(1.04);
+      z-index: 5;
+    }
+    .phone-notch {
+      width: 60px;
+      height: 10px;
+      background: #102d62;
+      border-radius: 0 0 8px 8px;
+      margin: 0 auto 6px;
+    }
+    .phone-content {
+      padding: 0 10px 10px;
+      font-size: 9px;
+    }
+    .phone-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .phone-greeting {
+      font-size: 8px;
+      color: var(--muted);
+      line-height: 1.2;
+    }
+    .phone-greeting b {
+      color: var(--navy);
+      display: block;
+      font-size: 9px;
+    }
+    .phone-card-mini {
+      background: #f8fbff;
+      border: 1px solid #e1edfc;
+      border-radius: 10px;
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .phone-card-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: #ddecff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+    .phone-card-title {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 8px;
+    }
+    .phone-card-rate {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 8px;
+    }
+    .phone-nav-bar {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #edf2f7;
+      padding-top: 6px;
+      margin-top: 4px;
+      color: #94a3b8;
+      font-size: 10px;
+    }
+
+    /* Floating Sticker Badges */
+    .floating-badge {
+      position: absolute;
+      background: #ffffff;
+      padding: 8px 14px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(25, 113, 210, 0.15);
+      border: 1px solid #e5effb;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 4;
+      font-size: 11.5px;
+      font-weight: 600;
+      animation: float 4s ease-in-out infinite;
+    }
+    .float-badge-1 {
+      left: -25px;
+      top: 40px;
+      animation-delay: 0s;
+    }
+    .float-badge-2 {
+      left: 10px;
+      bottom: 10px;
+      animation-delay: 2s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* SECTION: "ทำไมต้อง UniWork ?" matching poster */
+    .why-uniwork-section {
+      padding: 70px 0;
+      background: #ffffff;
+    }
+    .why-uniwork-box {
+      background: linear-gradient(145deg, #f0f7ff, #f9fbff);
+      border: 1.5px solid #d9e9fc;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: 0 16px 40px rgba(16, 45, 98, 0.05);
+    }
+    .why-uniwork-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1.9fr;
+      gap: 30px;
+      align-items: center;
+    }
+    .why-intro-card {
+      padding-right: 15px;
+    }
+    .why-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .why-title span {
+      color: var(--primary);
+    }
+    .why-desc {
+      font-size: 15px;
+      color: #556987;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .why-features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    .why-card {
+      background: #ffffff;
+      border: 1px solid #e1edfc;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(23, 105, 210, 0.1);
+      border-color: #b9d8fc;
+    }
+    .why-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      border: 1px solid #cde4ff;
+    }
+    .why-card h4 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .why-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* SECTION: "ประโยชน์ที่คาดว่าจะได้รับ" matching poster */
+    .benefits-section {
+      padding: 60px 0 80px;
+      background: #f8fbff;
+    }
+    .section-header-center {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 40px;
+    }
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .section-main-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+    }
+
+    .benefits-box {
+      background: #ffffff;
+      border: 1.5px solid #e1edf8;
+      border-radius: var(--radius-lg);
+      padding: 35px;
+      box-shadow: var(--shadow);
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 25px;
+      align-items: stretch;
+    }
+    .benefit-col {
+      padding: 10px 15px;
+      border-right: 1px solid #edf4fc;
+    }
+    .benefit-col:last-child {
+      border-right: none;
+    }
+    .benefit-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .benefit-avatar-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #eef6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      border: 2px solid #d4e7ff;
+    }
+    .benefit-col h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .benefit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .benefit-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: #475569;
+    }
+    .benefit-list li span.check-icon {
+      color: #10b981;
+      font-weight: 800;
+      font-size: 15px;
+      background: #ecfdf5;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Slogan Banner on the right */
+    .benefit-slogan-card {
+      background: linear-gradient(135deg, #134e9e, #1a73e8);
+      border-radius: 20px;
+      padding: 30px;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(25, 113, 210, 0.25);
+    }
+    .benefit-slogan-card::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      top: -80px;
+      right: -60px;
+    }
+    .benefit-slogan-title {
+      font-family: 'Caveat', cursive, 'Prompt';
+      font-size: 28px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .benefit-slogan-sub {
+      font-size: 18px;
+      font-weight: 700;
+      color: #bfe0ff;
+    }
+    .paper-plane-icon {
+      font-size: 34px;
+      margin-top: 15px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      transform: rotate(-10deg);
+      display: inline-block;
+      animation: planeFloat 3s ease-in-out infinite alternate;
+    }
+    @keyframes planeFloat {
+      0% { transform: translateY(0) rotate(-10deg); }
+      100% { transform: translateY(-8px) rotate(-5deg); }
+    }
+
+    /* SECTION: JOB SEARCH & LISTINGS */
+    .jobs-section {
+      padding: 70px 0;
+      background: #f1f7fe;
+    }
+    .jobs-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 25px;
+    }
+    .jobs-title-group h2 {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .jobs-title-group p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Filter Toolbar */
+    .filter-toolbar {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px 20px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+    .filter-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr 1.2fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+    .filter-input-wrap {
+      position: relative;
+    }
+    .filter-input {
+      width: 100%;
+      padding: 11px 16px 11px 40px;
+      border: 1.5px solid #e2edf8;
+      border-radius: 12px;
+      font-size: 14px;
+      color: var(--ink);
+      background: #fcfdfe;
+      transition: all 0.2s;
+    }
+    .filter-input:focus {
+      border-color: var(--primary);
+      background: #fff;
+    }
+    .filter-icon-left {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 16px;
+    }
+
+    .filter-select {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid #e2edf8;
+      border-radius: 12px;
+      font-size: 13.5px;
+      color: var(--navy);
+      background: #fcfdfe;
+      cursor: pointer;
+      outline: none;
+    }
+    .filter-select:focus {
+      border-color: var(--primary);
+    }
+
+    /* Category Pill Filters */
+    .category-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .cat-btn {
+      background: #f4f8fd;
+      border: 1px solid #e2edf8;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cat-btn:hover {
+      background: #e7f2ff;
+      color: var(--primary);
+    }
+    .cat-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Jobs Grid */
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    /* Individual Job Card */
+    .job-card {
+      background: #ffffff;
+      border: 1.5px solid #e2ecf7;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 4px 18px rgba(16, 45, 98, 0.04);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 35px rgba(23, 105, 210, 0.12);
+      border-color: #bad9fd;
+    }
+
+    .job-card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .company-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eff6ff, #ddecff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+      border: 1px solid #d4e7ff;
+    }
+    .job-title-box {
+      flex: 1;
+    }
+    .job-card-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.35;
+      margin-bottom: 4px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .job-card-title:hover {
+      color: var(--primary);
+    }
+    .company-name {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .verified-icon {
+      color: var(--primary);
+      font-size: 13px;
+    }
+
+    /* Save Job Bookmark Button */
+    .bookmark-btn {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .bookmark-btn:hover {
+      color: #ef4444;
+      background: #fee2e2;
+      border-color: #fca5a5;
+    }
+    .bookmark-btn.active {
+      color: #ef4444;
+      background: #fee2e2;
+      border-color: #fca5a5;
+    }
+
+    /* Meta tags & Details */
+    .job-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .job-tag {
+      font-size: 11.5px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+    }
+    .tag-location {
+      background: #f1f5f9;
+      color: #475569;
+    }
+    .tag-schedule {
+      background: #ecfdf5;
+      color: #065f46;
+    }
+    .tag-category {
+      background: #eef6ff;
+      color: var(--primary);
+    }
+
+    .job-desc-short {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 18px;
+      flex: 1;
+    }
+
+    /* Card Bottom: Pay & Actions */
+    .job-card-bottom {
+      border-top: 1px solid #edf2f7;
+      padding-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .job-salary-box {
+      display: flex;
+      flex-direction: column;
+    }
+    .salary-amount {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .salary-unit {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .job-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-apply-card {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .btn-apply-card:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+    .btn-report-flag {
+      background: transparent;
+      color: #94a3b8;
+      font-size: 14px;
+      padding: 6px;
+      border-radius: 8px;
+      transition: color 0.2s;
+    }
+    .btn-report-flag:hover {
+      color: var(--danger);
+      background: #fee2e2;
+    }
+
+    /* Empty state */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: #fff;
+      border-radius: 20px;
+      border: 1.5px dashed #cbd5e1;
+    }
+    .empty-state-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .empty-state h3 {
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .empty-state p {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* HOW IT WORKS SECTION */
+    .steps-section {
+      padding: 70px 0;
+      background: #ffffff;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+      position: relative;
+    }
+    .step-card {
+      background: #f9fbff;
+      border: 1px solid #e1edfc;
+      border-radius: 20px;
+      padding: 30px 25px;
+      text-align: center;
+      position: relative;
+      transition: all 0.25s;
+    }
+    .step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      background: #ffffff;
+    }
+    .step-num-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 800;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: -50px auto 16px;
+      box-shadow: 0 8px 18px rgba(25, 113, 210, 0.35);
+      border: 3px solid #fff;
+    }
+    .step-card h4 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .step-card p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* TESTIMONIALS / UNIVERSITY PARTNERS */
+    .unis-section {
+      padding: 40px 0 60px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+    }
+    .unis-title {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
+      margin-bottom: 25px;
+    }
+    .unis-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 35px;
+      flex-wrap: wrap;
+    }
+    .uni-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    /* CTA FOOTER BANNER */
+    .cta-section {
+      padding: 70px 0;
+      background: linear-gradient(135deg, #0d2346 0%, #1754a6 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+      right: 5%;
+      top: -100px;
+    }
+    .cta-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-text h2 {
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .cta-text p {
+      font-size: 16px;
+      color: #d6e8ff;
+      max-width: 580px;
+      line-height: 1.7;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .btn-cta-white {
+      background: #ffffff;
+      color: var(--primary);
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .btn-cta-white:hover {
+      background: #f0f7ff;
+      transform: translateY(-2px);
+    }
+    .btn-cta-trans {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+    }
+    .btn-cta-trans:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #091b36;
+      color: #94a3b8;
+      padding: 60px 0 25px;
+      font-size: 13.5px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 45px;
+    }
+    .footer-brand h3 {
+      font-size: 24px;
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      color: #94a3b8;
+      line-height: 1.8;
+      max-width: 320px;
+    }
+    .footer-col h4 {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links-list a {
+      color: #94a3b8;
+      transition: color 0.2s;
+    }
+    .footer-links-list a:hover {
+      color: #ffffff;
+    }
+    .footer-safety-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      color: #cbd5e1;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .footer-safety-card b {
+      color: #ffda79;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #64748b;
+      font-size: 12.5px;
+    }
+
+    /* MODALS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 25, 48, 0.65);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal-box {
+      background: #ffffff;
+      border-radius: 24px;
+      width: min(580px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+      position: relative;
+      animation: modalPop 0.25s ease-out;
+    }
+    @keyframes modalPop {
+      0% { transform: scale(0.95); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .modal-header {
+      padding: 22px 26px 18px;
+      border-bottom: 1px solid #eef2f6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 2;
+    }
+    .modal-header h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .modal-close-btn {
+      background: #f1f5f9;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #64748b;
+      cursor: pointer;
+    }
+    .modal-close-btn:hover {
+      background: #e2e8f0;
+      color: var(--navy);
+    }
+    .modal-body {
+      padding: 24px 26px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #ddecfa;
+      border-radius: 12px;
+      font-size: 14px;
+      color: var(--ink);
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .toast-item {
+      background: #ffffff;
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 14px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      animation: slideIn 0.3s ease-out;
+      min-width: 280px;
+    }
+    .toast-item.toast-success {
+      border-left-color: var(--success);
+    }
+    .toast-item.toast-danger {
+      border-left-color: var(--danger);
+    }
+    @keyframes slideIn {
+      0% { transform: translateX(100%); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    /* RESPONSIVE STYLES */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .hero-content {
+        text-align: center;
+      }
+      .hero-subtitle {
+        margin: 0 auto 30px;
+      }
+      .hero-search-wrapper {
+        margin: 0 auto 30px;
+      }
+      .note-one, .note-two {
+        display: none;
+      }
+      .why-uniwork-grid {
+        grid-template-columns: 1fr;
+      }
+      .why-intro-card {
+        padding-right: 0;
+        text-align: center;
+      }
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      .benefit-col {
+        border-right: none;
+        border-bottom: 1px solid #edf4fc;
+        padding-bottom: 20px;
+      }
+      .benefit-col:last-child {
+        border-bottom: none;
+      }
+      .jobs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .filter-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-features-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .why-features-grid {
+        grid-template-columns: 1fr;
+      }
+      .jobs-grid {
+        grid-template-columns: 1fr;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .filter-grid {
+        grid-template-columns: 1fr;
+      }
+      .cta-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .phone-mockup {
+        display: none;
+      }
+      .hero-visual-bg {
+        width: 300px;
+        height: 300px;
+      }
+      .laptop-frame {
+        transform: none;
+      }
+      .laptop-base {
+        margin: 0 -10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-banner">
+    <span class="badge-pill">ใหม่</span>
+    <span>🎓 แพลตฟอร์มงานพาร์ทไทม์เพื่อนักศึกษาอันดับ 1 ตรวจสอบผู้ประกอบการทุกตำแหน่ง ปลอดภัย 100%</span>
+  </div>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="/dashboard.html" class="logo">
+        <div class="logo-icon-wrap">
+          <span class="logo-cap">🎓</span>
+          <span class="logo-blue">Uni</span><span class="logo-navy">Work</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#home" class="nav-link active">หน้าแรก</a>
+        <a href="#why" class="nav-link">ทำไมต้อง UniWork</a>
+        <a href="#benefits" class="nav-link">ประโยชน์ที่ได้รับ</a>
+        <a href="#jobs" class="nav-link">ค้นหางาน</a>
+        <a href="#steps" class="nav-link">วิธีสมัคร</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Bookmark / Saved Jobs Button -->
+        <button class="saved-badge-btn" onclick="openSavedModal()" title="งานที่บันทึกไว้">
+          🤍
+          <span class="saved-count" id="savedCountBadge">0</span>
+        </button>
+
+        <button class="btn btn-post-job" onclick="openPostJobModal()">
+          + ลงประกาศงาน (ร้านค้า)
+        </button>
+        <button class="btn btn-primary" onclick="openLoginModal()">
+          เข้าสู่ระบบ
+        </button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION matching the Poster -->
+  <section class="hero-section" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Left: Copy & Search -->
+        <div class="hero-content">
+          <!-- Handwritten Sticker Note from Poster -->
+          <div class="hand-note note-one">
+            หารายได้ระหว่างเรียนได้ง่ายๆ ↙
+          </div>
+
+          <div class="hero-brand-tag">
+            <span>✨</span> แพลตฟอร์มเพื่อนักศึกษาโดยเฉพาะ
+          </div>
+
+          <h1 class="hero-title">
+            งานพาร์ทไทม์ที่ใช่
+            <span class="highlight-blue">สำหรับนักศึกษา</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            ค้นหางานง่าย ได้งานจริง สร้างรายได้ไปพร้อมกับการเรียน จัดตารางงานยืดหยุ่นให้เข้ากับเวลาเรียนของคุณได้อย่างลงตัว
+          </p>
+
+          <!-- Search Box -->
+          <div class="hero-search-wrapper">
+            <div class="search-inputs">
+              <span class="search-icon">🔍</span>
+              <input 
+                type="text" 
+                id="heroSearchInput" 
+                class="search-input-field" 
+                placeholder="ค้นหาตำแหน่งงาน, สถานที่, หรือประเภทงาน..."
+                onkeyup="handleHeroSearch(event)"
+              >
+              <button class="btn btn-primary" onclick="searchFromHero()">
+                ค้นหางานเลย >
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 Feature Pills from the Poster -->
+          <div class="hero-features-row">
+            <div class="feature-pill">
+              <div class="pill-icon-circle">💼</div>
+              <div class="feature-pill-title">งานหลากหลาย</div>
+              <span class="feature-pill-desc">ประเภท</span>
+            </div>
+            <div class="feature-pill">
+              <div class="pill-icon-circle">📍</div>
+              <div class="feature-pill-title">เลือกตามสถานที่</div>
+              <span class="feature-pill-desc">ที่สะดวก</span>
+            </div>
+            <div class="feature-pill">
+              <div class="pill-icon-circle">🕒</div>
+              <div class="feature-pill-title">ยืดหยุ่นเวลา</div>
+              <span class="feature-pill-desc">ได้ตามตารางเรียน</span>
+            </div>
+            <div class="feature-pill">
+              <div class="pill-icon-circle">🛡️</div>
+              <div class="feature-pill-title">ปลอดภัย</div>
+              <span class="feature-pill-desc">มีระบบรายงาน</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Laptop & Mobile Screen Mockup from Poster -->
+        <div class="hero-visual-wrapper">
+          <div class="hero-visual-bg"></div>
+
+          <!-- Handwritten Sticker Note 2 from Poster -->
+          <div class="hand-note note-two">
+            งานดีๆ รออยู่ที่นี่ ♡ ╯
+          </div>
+
+          <!-- Floating Badges -->
+          <div class="floating-badge float-badge-1">
+            <span>🎒</span> Work & Study Balance
+          </div>
+          <div class="floating-badge float-badge-2">
+            <span>⭐</span> รีวิวผู้ประกอบการ 4.9/5
+          </div>
+
+          <div class="mockup-container">
+            <!-- Laptop Device Mockup -->
+            <div class="laptop-frame">
+              <div class="screen-header">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <div class="screen-url">🔒 uniwork.th/student</div>
+              </div>
+              <div class="screen-body">
+                <div class="screen-nav">
+                  <div class="screen-logo">🎓 UniWork</div>
+                  <div class="screen-menu-mini">
+                    <span>หน้าแรก</span>
+                    <span>ค้นหางาน</span>
+                    <span>เกี่ยวกับเรา</span>
+                  </div>
+                </div>
+
+                <div class="screen-hero-mini">
+                  <h4>หางานพาร์ทไทม์ที่ใช่สำหรับคุณ</h4>
+                  <p>ค้นหาง่าย ได้งานจริง สร้างรายได้ไปพร้อมกับการเรียน</p>
+                  <div class="screen-search-mini">
+                    <span>🔍 ค้นหางาน, สถานที่, ประเภทงาน...</span>
+                    <span class="screen-btn-mini">ค้นหา</span>
+                  </div>
+                  <div class="screen-cats-mini">
+                    <span class="cat-mini-tag">🍽️ ร้านอาหาร</span>
+                    <span class="cat-mini-tag">☕ คาเฟ่</span>
+                    <span class="cat-mini-tag">📦 จัดเรียงสินค้า</span>
+                    <span class="cat-mini-tag">💻 ออนไลน์</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="laptop-base"></div>
+
+            <!-- Smartphone Mockup as depicted in poster -->
+            <div class="phone-mockup">
+              <div class="phone-notch"></div>
+              <div class="phone-content">
+                <div class="phone-header">
+                  <div class="phone-greeting">
+                    สวัสดีครับ 
+                    <b>พร้อมหางานพาร์ทไทม์?</b>
+                  </div>
+                  <div style="font-size:14px;">🎓</div>
+                </div>
+
+                <div style="font-weight:700; color:var(--navy); font-size:8.5px; margin-bottom:4px;">
+                  งานแนะนำสำหรับคุณ
+                </div>
+
+                <div class="phone-card-mini">
+                  <div class="phone-card-icon">☕</div>
+                  <div>
+                    <div class="phone-card-title">พนักงานร้านกาแฟ</div>
+                    <div style="font-size:7px; color:#888;">สยามสแควร์</div>
+                    <div class="phone-card-rate">50-70 บาท/ชม.</div>
+                  </div>
+                </div>
+
+                <div class="phone-card-mini">
+                  <div class="phone-card-icon">🍽️</div>
+                  <div>
+                    <div class="phone-card-title">พนักงานบริการ</div>
+                    <div style="font-size:7px; color:#888;">เซ็นทรัลลาดพร้าว</div>
+                    <div class="phone-card-rate">45-60 บาท/ชม.</div>
+                  </div>
+                </div>
+
+                <div class="phone-card-mini">
+                  <div class="phone-card-icon">📦</div>
+                  <div>
+                    <div class="phone-card-title">พนักงานแพ็คสินค้า</div>
+                    <div style="font-size:7px; color:#888;">รังสิต</div>
+                    <div class="phone-card-rate">40-55 บาท/ชม.</div>
+                  </div>
+                </div>
+
+                <div class="phone-nav-bar">
+                  <span>🏠</span>
+                  <span>🔍</span>
+                  <span>📋</span>
+                  <span>👤</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: "ทำไมต้อง UniWork ?" matching poster layout -->
+  <section class="why-uniwork-section" id="why">
+    <div class="container">
+      <div class="why-uniwork-box">
+        <div class="why-uniwork-grid">
+          <!-- Left Intro Card -->
+          <div class="why-intro-card">
+            <h2 class="why-title">
+              ทำไมต้อง <span>UniWork ?</span>
+            </h2>
+            <p class="why-desc">
+              UniWork คือแพลตฟอร์มที่เชื่อมต่อนักศึกษากับผู้ประกอบการ ช่วยให้ค้นหาและสมัครงานพาร์ทไทม์ได้ง่ายขึ้น ครบ จบ ในที่เดียว
+            </p>
+            <a href="#jobs" class="btn btn-primary">
+              ดูตำแหน่งงานว่างทั้งหมด →
+            </a>
+          </div>
+
+          <!-- Right 4 Benefit Cards from Poster -->
+          <div class="why-features-grid">
+            <div class="why-card">
+              <div class="why-icon-box">🔍</div>
+              <div>
+                <h4>ค้นหางานได้ตรงใจ</h4>
+                <p>เลือกตามประเภทงาน สถานที่ ค่าตอบแทน และเวลาที่สะดวกได้ตามตารางชีวิต</p>
+              </div>
+            </div>
+
+            <div class="why-card">
+              <div class="why-icon-box">📄</div>
+              <div>
+                <h4>สมัครง่าย</h4>
+                <p>เพียงไม่กี่ขั้นตอน กรอกประวัติเบื้องต้น ติดตามสถานะการสมัครได้ทันที</p>
+              </div>
+            </div>
+
+            <div class="why-card">
+              <div class="why-icon-box">🛡️</div>
+              <div>
+                <h4>ปลอดภัยมากขึ้น</h4>
+                <p>มีระบบรายงานประกาศงานที่น่าสงสัย เพื่อความมั่นใจและความปลอดภัยในการสมัครงาน</p>
+              </div>
+            </div>
+
+            <div class="why-card">
+              <div class="why-icon-box">📱</div>
+              <div>
+                <h4>ใช้งานได้ทุกอุปกรณ์</h4>
+                <p>รองรับการใช้งานอย่างลื่นไหล ทั้งคอมพิวเตอร์ แท็บเล็ต และโทรศัพท์มือถือ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: "ประโยชน์ที่คาดว่าจะได้รับ" matching poster -->
+  <section class="benefits-section" id="benefits">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-eyebrow">EXPECTED BENEFITS</span>
+        <h2 class="section-main-title">ประโยชน์ที่คาดว่าจะได้รับ</h2>
+      </div>
+
+      <div class="benefits-box">
+        <div class="benefits-grid">
+          <!-- Column 1: For Students -->
+          <div class="benefit-col">
+            <div class="benefit-header">
+              <div class="benefit-avatar-icon">🎓</div>
+              <div>
+                <h3>นักศึกษา</h3>
+                <span style="font-size:12px; color:var(--muted);">Students</span>
+              </div>
+            </div>
+            <ul class="benefit-list">
+              <li>
+                <span class="check-icon">✓</span>
+                <div>สร้างรายได้ระหว่างเรียน ช่วยแบ่งเบาภาระครอบครัว</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div>เพิ่มประสบการณ์ทำงานจริง ได้เรียนรู้ทักษะนอกห้องเรียน</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div>พัฒนาทักษะและความมั่นใจ เสริมประวัติเรซูเม่ก่อนจบการศึกษา</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 2: For Employers -->
+          <div class="benefit-col">
+            <div class="benefit-header">
+              <div class="benefit-avatar-icon">🏬</div>
+              <div>
+                <h3>ผู้ประกอบการ</h3>
+                <span style="font-size:12px; color:var(--muted);">Employers</span>
+              </div>
+            </div>
+            <ul class="benefit-list">
+              <li>
+                <span class="check-icon">✓</span>
+                <div>เข้าถึงนักศึกษาได้ง่ายขึ้น ได้คนรุ่นใหม่ที่มีพลังและไฟในการทำงาน</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div>ลดขั้นตอนการหาพนักงาน ประหยัดเวลาและค่าใช้จ่ายในการสรรหา</div>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <div>เพิ่มโอกาสในการขยายธุรกิจ ด้วยทีมงานพาร์ทไทม์ที่ยืดหยุ่น</div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Inspirational Slogan from poster -->
+          <div class="benefit-slogan-card">
+            <div class="benefit-slogan-title">UniWork</div>
+            <div class="benefit-slogan-sub">
+              มากกว่าแค่หางาน<br>คือโอกาสในการเติบโต
+            </div>
+            <div class="paper-plane-icon">✈️</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: JOB SEARCH & LIVE DIRECTORY -->
+  <section class="jobs-section" id="jobs">
+    <div class="container">
+      <div class="jobs-header-row">
+        <div class="jobs-title-group">
+          <h2>งานพาร์ทไทม์แนะนำสำหรับนักศึกษา</h2>
+          <p>เลือกดูตำแหน่งงานที่ผ่านการยืนยัน พร้อมระบุเวลาทำงานและค่าตอบแทนชัดเจน</p>
+        </div>
+        <div id="jobResultsCount" style="font-size:14px; color:var(--primary); font-weight:600;">
+          พบ 6 ตำแหน่งงาน
+        </div>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="filter-toolbar">
+        <div class="filter-grid">
+          <div class="filter-input-wrap">
+            <span class="filter-icon-left">🔍</span>
+            <input 
+              type="text" 
+              id="jobKeywordInput" 
+              class="filter-input" 
+              placeholder="ค้นหาชื่อตำแหน่งงาน หรือชื่อร้านค้า..."
+              oninput="filterJobs()"
+            >
+          </div>
+
+          <div>
+            <select id="locationSelect" class="filter-select" onchange="filterJobs()">
+              <option value="all">📍 ทุกทำเล / สถานที่</option>
+              <option value="สยาม">สยาม / ปทุมวัน (ใกล้ จุฬาฯ)</option>
+              <option value="ลาดพร้าว">ลาดพร้าว / จตุจักร</option>
+              <option value="รังสิต">รังสิต (ใกล้ มธ./ม.กรุงเทพ)</option>
+              <option value="บางนา">บางนา / สมุทรปราการ</option>
+              <option value="ศาลายา">ศาลายา (ใกล้ ม.มหิดล)</option>
+              <option value="ออนไลน์">ทำงานที่บ้าน (WFH / ออนไลน์)</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="salaryFilterSelect" class="filter-select" onchange="filterJobs()">
+              <option value="all">💰 ทุกระดับค่าตอบแทน</option>
+              <option value="rate-50">50 - 65 บาท/ชม.</option>
+              <option value="rate-70">70+ บาท/ชม.</option>
+              <option value="rate-day">รายวัน (400 - 800 บ./วัน)</option>
+            </select>
+          </div>
+
+          <button class="btn btn-outline" onclick="resetFilters()">
+            รีเซ็ตตัวกรอง
+          </button>
+        </div>
+
+        <!-- Category Pills from poster -->
+        <div class="category-pills">
+          <button class="cat-btn active" data-cat="all" onclick="selectCategory('all', this)">
+            ✨ ทั้งหมด
+          </button>
+          <button class="cat-btn" data-cat="cafe" onclick="selectCategory('cafe', this)">
+            ☕ ร้านกาแฟ & คาเฟ่
+          </button>
+          <button class="cat-btn" data-cat="food" onclick="selectCategory('food', this)">
+            🍽️ ร้านอาหาร & บริการ
+          </button>
+          <button class="cat-btn" data-cat="pack" onclick="selectCategory('pack', this)">
+            📦 จัดเรียงสินค้า & แพ็คของ
+          </button>
+          <button class="cat-btn" data-cat="online" onclick="selectCategory('online', this)">
+            💻 แอดมินออนไลน์ & WFH
+          </button>
+          <button class="cat-btn" data-cat="tutor" onclick="selectCategory('tutor', this)">
+            📚 ติวเตอร์ & ผู้ช่วยสอน
+          </button>
+          <button class="cat-btn" data-cat="event" onclick="selectCategory('event', this)">
+            🎪 สต๊าฟอีเวนต์ & กิจกรรม
+          </button>
+        </div>
+      </div>
+
+      <!-- Jobs Grid List -->
+      <div class="jobs-grid" id="jobsGridContainer">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: HOW IT WORKS (3 Simple Steps) -->
+  <section class="steps-section" id="steps">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-eyebrow">HOW IT WORKS</span>
+        <h2 class="section-main-title">สมัครง่ายๆ เพียง 3 ขั้นตอน</h2>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num-badge">1</div>
+          <h4>ค้นหางานที่ตรงใจ</h4>
+          <p>เลือกงานจากทำเลใกล้หอพัก มหาวิทยาลัย หรือเลือกตามตารางเวลาเรียนที่คุณสะดวก</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num-badge">2</div>
+          <h4>กรอกข้อมูลและสมัคร</h4>
+          <p>ส่งข้อมูลติดต่อ ประวัติสั้นๆ และเวลาที่คุณพร้อมทำงาน ไม่ต้องมีเรซูเม่ซับซ้อน</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num-badge">3</div>
+          <h4>เริ่มทำงานและสร้างรายได้</h4>
+          <p>รอร้านค้านัดสัมภาษณ์หรือนัดเริ่มงาน รับค่าตอบแทนตรงเวลา พร้อมสะสมประสบการณ์</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIVERSITY PARTNERS / STUDENT TRUST -->
+  <section class="unis-section">
+    <div class="container">
+      <div class="unis-title">รองรับนักศึกษาจากทุกสถาบันทั่วประเทศ</div>
+      <div class="unis-logos">
+        <div class="uni-badge-item">🏛️ จุฬาลงกรณ์มหาวิทยาลัย</div>
+        <div class="uni-badge-item">🏛️ มหาวิทยาลัยธรรมศาสตร์</div>
+        <div class="uni-badge-item">🏛️ มหาวิทยาลัยเกษตรศาสตร์</div>
+        <div class="uni-badge-item">🏛️ มหาวิทยาลัยมหิดล</div>
+        <div class="uni-badge-item">🏛️ มหาวิทยาลัยเชียงใหม่</div>
+        <div class="uni-badge-item">🏛️ มหาวิทยาลัยกรุงเทพ</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-text">
+          <h2>พร้อมเริ่มต้นหารายได้ระหว่างเรียนแล้วหรือยัง?</h2>
+          <p>ร่วมเป็นส่วนหนึ่งของ UniWork แพลตฟอร์มที่เชื่อมโยงนักศึกษากับงานพาร์ทไทม์คุณภาพ สมัครฟรี ไม่มีค่าธรรมเนียมใดๆ ทั้งสิ้น</p>
+        </div>
+        <div class="cta-buttons">
+          <a href="#jobs" class="btn btn-lg btn-cta-white">
+            🔍 ค้นหางานเลย >
+          </a>
+          <button class="btn btn-lg btn-cta-trans" onclick="openPostJobModal()">
+            สำหรับร้านค้า / ผู้ประกอบการ
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🎓 UniWork</h3>
+          <p>
+            งานพาร์ทไทม์ที่ใช่ สำหรับนักศึกษา ค้นหางานง่าย ได้งานจริง สร้างรายได้ไปพร้อมกับการเรียนอย่างมั่นคงและปลอดภัย
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>สำหรับนักศึกษา</h4>
+          <ul class="footer-links-list">
+            <li><a href="#jobs">ค้นหางานทั้งหมด</a></li>
+            <li><a href="#jobs" onclick="selectCategory('cafe')">งานร้านกาแฟ / คาเฟ่</a></li>
+            <li><a href="#jobs" onclick="selectCategory('online')">งานออนไลน์ WFH</a></li>
+            <li><a href="#steps">ขั้นตอนการสมัครงาน</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>สำหรับผู้ประกอบการ</h4>
+          <ul class="footer-links-list">
+            <li><a href="javascript:void(0)" onclick="openPostJobModal()">ลงประกาศรับสมัครงาน</a></li>
+            <li><a href="#why">ทำไมต้องเลือก UniWork</a></li>
+            <li><a href="javascript:void(0)" onclick="showToast('ติดต่อทีมงานได้ที่ contact@uniwork.th')">ศูนย์ช่วยเหลือผู้ประกอบการ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>ความปลอดภัย 100%</h4>
+          <div class="footer-safety-card">
+            <b>🛡️ ระบบตรวจคัดกรองงาน</b>
+            ทุกตำแหน่งงานผ่านการตรวจสอบข้อมูลเบื้องต้น ป้องกันการหลอกลวงหรือมิจฉาชีพ หากพบเห็นงานน่าสงสัยสามารถกด "รายงาน" ได้ทันที
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 UniWork Thailand. สงวนลิขสิทธิ์ทุกประการ.</div>
+        <div>Work & Study Balance เพื่อนักศึกษาไทย</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL: JOB DETAILS & APPLY FORM -->
+  <div class="modal-overlay" id="applyModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalJobTitle">สมัครงานพาร์ทไทม์</h3>
+        <button class="modal-close-btn" onclick="closeApplyModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:#f1f7fe; border-radius:14px; padding:14px 18px; margin-bottom:20px;">
+          <div style="font-weight:700; color:var(--navy); font-size:15px;" id="modalCompanyName">ชื่อร้านค้า</div>
+          <div style="display:flex; gap:12px; margin-top:6px; font-size:12.5px; color:#556987;">
+            <span id="modalLocation">📍 ทำเล</span>
+            <span id="modalSalary" style="font-weight:700; color:var(--primary);">💰 ค่าตอบแทน</span>
+          </div>
+        </div>
+
+        <form id="jobApplicationForm" onsubmit="submitApplication(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>ชื่อ - นามสกุล *</label>
+              <input type="text" class="form-control" placeholder="เช่น นายสมใจ มีสุข" required>
+            </div>
+            <div class="form-group">
+              <label>เบอร์โทรศัพท์ติดต่อ *</label>
+              <input type="tel" class="form-control" placeholder="08x-xxx-xxxx" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>สถาบันการศึกษา / มหาวิทยาลัย *</label>
+              <input type="text" class="form-control" placeholder="เช่น ม.เกษตรศาสตร์ ปี 2" required>
+            </div>
+            <div class="form-group">
+              <label>LINE ID *</label>
+              <input type="text" class="form-control" placeholder="เพื่อให้ร้านค้าติดต่อกลับ" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>วันและเวลาที่สะดวกทำงาน *</label>
+            <input type="text" class="form-control" placeholder="เช่น จันทร์-ศุกร์ หลัง 16:30 น. หรือ เสาร์-อาทิตย์ เต็มวัน" required>
+          </div>
+
+          <div class="form-group">
+            <label>ข้อความแนะนำตัว หรือประสบการณ์ที่เคยทำ (ถ้ามี)</label>
+            <textarea class="form-control" rows="3" placeholder="บอกจุดเด่นของคุณสั้นๆ เช่น มีความรับผิดชอบ เคยทำร้านอาหาร เป็นต้น"></textarea>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+            <button type="button" class="btn btn-outline" onclick="closeApplyModal()">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary">ยืนยันการสมัครงาน (ฟรี) 🚀</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: REPORT SUSPICIOUS JOB (ระบบรายงานประกาศงาน) -->
+  <div class="modal-overlay" id="reportModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🛡️ รายงานประกาศงานที่น่าสงสัย</h3>
+        <button class="modal-close-btn" onclick="closeReportModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13.5px; color:var(--muted); margin-bottom:18px;">
+          ทีมงาน UniWork ให้ความสำคัญสูงสุดกับความปลอดภัยของนักศึกษา หากคุณพบประกาศงานที่น่าสงสัย โปรดแจ้งให้เราทราบ
+        </p>
+
+        <form onsubmit="submitReport(event)">
+          <input type="hidden" id="reportJobId">
+          <div class="form-group">
+            <label>หัวข้อที่ต้องการรายงาน *</label>
+            <select class="form-control" required id="reportReasonSelect">
+              <option value="">-- โปรดเลือกสาเหตุ --</option>
+              <option value="scam">น่าสงสัยว่าเป็นการหลอกลวง / ชักชวนทำงานผิดกฎหมาย</option>
+              <option value="fee">มีการเรียกเก็บค่าใช้จ่าย หรือค่าสมัครล่วงหน้า</option>
+              <option value="wage">ค่าตอบแทนหรือรายละเอียดไม่ตรงกับที่ประกาศไว้</option>
+              <option value="inappropriate">มีเนื้อหาคุกคามหรือไม่เหมาะสม</option>
+              <option value="other">สาเหตุอื่นๆ</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>รายละเอียดเพิ่มเติม</label>
+            <textarea class="form-control" rows="3" placeholder="อธิบายข้อมูลเพิ่มเติม เช่น ช่องทางที่ร้านค้าติดต่อมา ข้อความที่น่าสงสัย" required></textarea>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+            <button type="button" class="btn btn-outline" onclick="closeReportModal()">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary" style="background:var(--danger);">ส่งรายงานตรวจสอบ</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: POST A JOB (สำหรับผู้ประกอบการ) -->
+  <div class="modal-overlay" id="postJobModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🏬 ลงประกาศงานพาร์ทไทม์ (สำหรับร้านค้า)</h3>
+        <button class="modal-close-btn" onclick="closePostJobModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13px; color:var(--muted); margin-bottom:18px;">
+          เข้าถึงนักศึกษาไฟแรงในพื้นที่ใกล้เคียง กรอกข้อมูลงานเพื่อเริ่มรับสมัครได้ทันที
+        </p>
+
+        <form onsubmit="submitNewJob(event)">
+          <div class="form-group">
+            <label>ชื่อตำแหน่งงาน *</label>
+            <input type="text" id="newJobTitle" class="form-control" placeholder="เช่น บาริสต้าพาร์ทไทม์, แอดมินตอบแชท" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>ชื่อร้านค้า / บริษัท *</label>
+              <input type="text" id="newJobCompany" class="form-control" placeholder="เช่น Morning Brew Cafe" required>
+            </div>
+            <div class="form-group">
+              <label>หมวดหมู่งาน *</label>
+              <select id="newJobCat" class="form-control" required>
+                <option value="cafe">ร้านกาแฟ & คาเฟ่</option>
+                <option value="food">ร้านอาหาร & บริการ</option>
+                <option value="pack">จัดเรียงสินค้า & แพ็คของ</option>
+                <option value="online">แอดมินออนไลน์ & WFH</option>
+                <option value="tutor">ติวเตอร์ & ผู้ช่วยสอน</option>
+                <option value="event">สต๊าฟอีเวนต์ & กิจกรรม</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>ทำเล / สถานที่ปฏิบัติงาน *</label>
+              <input type="text" id="newJobLocation" class="form-control" placeholder="เช่น สยามสแควร์วัน (BTS สยาม)" required>
+            </div>
+            <div class="form-group">
+              <label>ค่าตอบแทน *</label>
+              <input type="text" id="newJobSalary" class="form-control" placeholder="เช่น 65 - 75 บาท/ชม." required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>วันและเวลาทำงาน / ความยืดหยุ่น</label>
+            <input type="text" id="newJobSchedule" class="form-control" placeholder="เช่น เลือกวันได้ 3-4 วัน/สัปดาห์ หรือ หลังเลิกเรียน 17:00-21:00" required>
+          </div>
+
+          <div class="form-group">
+            <label>รายละเอียดงานสั้นๆ</label>
+            <textarea id="newJobDesc" class="form-control" rows="2" placeholder="อธิบายหน้าที่ความรับผิดชอบ และคุณสมบัติที่ต้องการ" required></textarea>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:20px;">
+            <button type="button" class="btn btn-outline" onclick="closePostJobModal()">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary">+ โพสต์ประกาศงานเลย</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: SAVED JOBS LIST -->
+  <div class="modal-overlay" id="savedModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>🤍 งานที่คุณบันทึกไว้</h3>
+        <button class="modal-close-btn" onclick="closeSavedModal()">✕</button>
+      </div>
+      <div class="modal-body" id="savedJobsListContainer">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LOGIN / SIGNUP -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box" style="max-width:440px;">
+      <div class="modal-header">
+        <h3>เข้าสู่ระบบ UniWork</h3>
+        <button class="modal-close-btn" onclick="closeLoginModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="text-align:center; margin-bottom:20px;">
+          <div style="font-size:36px; margin-bottom:8px;">🎓</div>
+          <p style="font-size:13.5px; color:var(--muted);">
+            ยินดีต้อนรับกลับ! เข้าสู่ระบบเพื่อติดตามงานที่สมัครไว้
+          </p>
+        </div>
+
+        <form onsubmit="handleLoginSubmit(event)">
+          <div class="form-group">
+            <label>อีเมล หรือเบอร์โทรศัพท์</label>
+            <input type="text" class="form-control" placeholder="name@university.ac.th" required>
+          </div>
+          <div class="form-group">
+            <label>รหัสผ่าน</label>
+            <input type="password" class="form-control" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">
+            เข้าสู่ระบบ
+          </button>
+          <p style="font-size:12px; text-align:center; color:#94a3b8; margin-top:14px;">
+            ยังไม่มีบัญชี? <a href="javascript:void(0)" onclick="showToast('ระบบสมัครสมาชิกใหม่เปิดให้นักศึกษาลงทะเบียนฟรี')" style="color:var(--primary); font-weight:600;">ลงทะเบียนนักศึกษาใหม่</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Initial Job Listings Dataset matching the design & poster
+    let jobsData = [
+      {
+        id: 1,
+        title: "บาริสต้าพาร์ทไทม์ (เลือกเวลาเรียนได้)",
+        company: "Craft & Coffee Space",
+        category: "cafe",
+        icon: "☕",
+        location: "สยาม",
+        locationDetail: "สยามสแควร์วัน (BTS สยาม)",
+        salary: "65 - 80 บาท/ชม.",
+        salaryType: "rate-70",
+        schedule: "🕒 เลือกวันได้ (4-6 ชม./วัน)",
+        desc: "ชงเครื่องดื่ม ดูแลแคชเชียร์ และบริการลูกค้า เหมาะสำหรับนักศึกษาที่มีช่วงเวลาว่างระหว่างวันหรือช่วงบ่าย",
+        verified: true,
+        postedDate: "2 วันที่แล้ว"
+      },
+      {
+        id: 2,
+        title: "พนักงานบริการ / เสิร์ฟ (กะเย็น)",
+        company: "Shabu Shabu House",
+        category: "food",
+        icon: "🍽️",
+        location: "ลาดพร้าว",
+        locationDetail: "เซ็นทรัลพลาซา ลาดพร้าว",
+        salary: "55 - 65 บาท/ชม.",
+        salaryType: "rate-50",
+        schedule: "🕒 หลังเลิกเรียน 17:30 - 21:30 น.",
+        desc: "ต้อนรับลูกค้า เสิร์ฟอาหาร ดูแลความสะอาดร้าน มีอาหารพนักงานฟรี 1 มื้อ บรรยากาศเป็นกันเอง",
+        verified: true,
+        postedDate: "วันนี้"
+      },
+      {
+        id: 3,
+        title: "พนักงานจัดเรียงและแพ็คสินค้าตามออเดอร์",
+        company: "Next Logistics Hub",
+        category: "pack",
+        icon: "📦",
+        location: "รังสิต",
+        locationDetail: "ใกล้ ม.กรุงเทพ & ม.ธรรมศาสตร์ รังสิต",
+        salary: "500 - 650 บาท/วัน",
+        salaryType: "rate-day",
+        schedule: "🕒 เสาร์ - อาทิตย์ เต็มวัน",
+        desc: "หยิบสินค้า ตรวจสอบความถูกต้องและแพ็คพัสดุสำหรับจัดส่ง เหมาะกับนักศึกษาที่อยากทำงานเฉพาะวันหยุด",
+        verified: true,
+        postedDate: "1 วันที่แล้ว"
+      },
+      {
+        id: 4,
+        title: "แอดมินตอบแชทลูกค้าออนไลน์ (WFH 100%)",
+        company: "Trendy Style Shop",
+        category: "online",
+        icon: "💻",
+        location: "ออนไลน์",
+        locationDetail: "ทำงานที่บ้าน / หอพัก",
+        salary: "450 - 600 บาท/วัน",
+        salaryType: "rate-day",
+        schedule: "🕒 กะค่ำ 19:00 - 23:00 น.",
+        desc: "ตอบแชทแนะนำสินค้า ปิดการขายทาง LINE OA และ TikTok Shop มีเทรนนิ่งงานให้ ทำงานผ่านมือถือหรือแท็บเล็ตได้",
+        verified: true,
+        postedDate: "3 วันที่แล้ว"
+      },
+      {
+        id: 5,
+        title: "ผู้ช่วยติวเตอร์สอนการบ้านภาษาอังกฤษ ม.ต้น",
+        company: "Bright Future Academy",
+        category: "tutor",
+        icon: "📚",
+        location: "สยาม",
+        locationDetail: "อาคารวรรณสรณ์ (พญาไท)",
+        salary: "100 - 150 บาท/ชม.",
+        salaryType: "rate-70",
+        schedule: "🕒 อังคาร, พฤหัสบดี (17:00-19:00)",
+        desc: "ตรวจแบบฝึกหัด ช่วยน้องๆ ทำการบ้านภาษาอังกฤษและทบทวนคำศัพท์ รับนักศึกษาชั้นปี 2 ขึ้นไป ภาษาอังกฤษดี",
+        verified: true,
+        postedDate: "4 วันที่แล้ว"
+      },
+      {
+        id: 6,
+        title: "สต๊าฟอำนวยความสะดวกงานคอนเสิร์ต & อีเวนต์",
+        company: "Live Stage Production",
+        category: "event",
+        icon: "🎪",
+        location: "บางนา",
+        locationDetail: "ไบเทค บางนา",
+        salary: "700 - 900 บาท/วัน",
+        salaryType: "rate-day",
+        schedule: "🕒 เฉพาะสุดสัปดาห์ (วันที่มีงานแสดง)",
+        desc: "ตรวจบัตรเข้างาน แนะนำจุดนั่ง ดูแลความเรียบร้อย มีเบี้ยเลี้ยงอาหารและเครื่องดื่ม สนุก ได้เพื่อนใหม่เพียบ",
+        verified: true,
+        postedDate: "5 วันที่แล้ว"
+      }
+    ];
+
+    // Saved bookmark job IDs
+    let savedJobIds = new Set();
+    let currentSelectedCategory = 'all';
+
+    // Initialize application
+    document.addEventListener("DOMContentLoaded", () => {
+      renderJobs();
+      updateSavedBadge();
+    });
+
+    // Render Jobs Function
+    function renderJobs() {
+      const container = document.getElementById("jobsGridContainer");
+      const keyword = document.getElementById("jobKeywordInput").value.trim().toLowerCase();
+      const location = document.getElementById("locationSelect").value;
+      const salaryType = document.getElementById("salaryFilterSelect").value;
+
+      // Filter dataset
+      const filtered = jobsData.filter(job => {
+        // Category filter
+        const matchCat = currentSelectedCategory === 'all' || job.category === currentSelectedCategory;
+        // Location filter
+        const matchLoc = location === 'all' || job.location === location;
+        // Salary filter
+        const matchSalary = salaryType === 'all' || job.salaryType === salaryType;
+        // Keyword filter
+        const matchKeyword = !keyword || 
+          job.title.toLowerCase().includes(keyword) || 
+          job.company.toLowerCase().includes(keyword) ||
+          job.locationDetail.toLowerCase().includes(keyword) ||
+          job.desc.toLowerCase().includes(keyword);
+
+        return matchCat && matchLoc && matchSalary && matchKeyword;
+      });
+
+      // Update count text
+      document.getElementById("jobResultsCount").innerText = `พบ ${filtered.length} ตำแหน่งงาน`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">🔍</div>
+            <h3>ไม่พบตำแหน่งงานที่ตรงกับเงื่อนไข</h3>
+            <p>ลองปรับคำค้นหา หรือเลือกตัวกรองหมวดหมู่และทำเลใหม่อีกครั้ง</p>
+            <button class="btn btn-outline" onclick="resetFilters()">ล้างตัวกรองทั้งหมด</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(job => {
+        const isSaved = savedJobIds.has(job.id);
+        return `
+          <div class="job-card">
+            <div class="job-card-top">
+              <div class="company-avatar">${job.icon}</div>
+              <div class="job-title-box">
+                <div class="job-card-title" onclick="openApplyModal(${job.id})">${job.title}</div>
+                <div class="company-name">
+                  ${job.company}
+                  ${job.verified ? '<span class="verified-icon" title="ผู้ประกอบการผ่านการตรวจสอบแล้ว">✓</span>' : ''}
+                </div>
+              </div>
+              <button 
+                class="bookmark-btn ${isSaved ? 'active' : ''}" 
+                onclick="toggleSaveJob(${job.id}, event)"
+                title="${isSaved ? 'นำออกจากงานที่บันทึก' : 'บันทึกงานนี้'}"
+              >
+                ${isSaved ? '❤️' : '🤍'}
+              </button>
+            </div>
+
+            <div class="job-tags-row">
+              <span class="job-tag tag-location">📍 ${job.locationDetail}</span>
+              <span class="job-tag tag-schedule">${job.schedule}</span>
+            </div>
+
+            <div class="job-desc-short">${job.desc}</div>
+
+            <div class="job-card-bottom">
+              <div class="job-salary-box">
+                <span class="salary-amount">${job.salary}</span>
+                <span class="salary-unit">โพสต์เมื่อ ${job.postedDate}</span>
+              </div>
+              <div class="job-actions-group">
+                <button class="btn-report-flag" onclick="openReportModal(${job.id})" title="รายงานประกาศงานนี้">
+                  🛡️
+                </button>
+                <button class="btn-apply-card" onclick="openApplyModal(${job.id})">
+                  สมัครง่าย
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Filter Trigger
+    function filterJobs() {
+      renderJobs();
+    }
+
+    // Category Selector
+    function selectCategory(cat, element) {
+      currentSelectedCategory = cat;
+      // Update UI button state
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
+      });
+      renderJobs();
+    }
+
+    // Reset Filters
+    function resetFilters() {
+      document.getElementById("jobKeywordInput").value = '';
+      document.getElementById("locationSelect").value = 'all';
+      document.getElementById("salaryFilterSelect").value = 'all';
+      currentSelectedCategory = 'all';
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-cat') === 'all');
+      });
+      renderJobs();
+      showToast("รีเซ็ตตัวกรองทั้งหมดแล้ว");
+    }
+
+    // Hero Search Trigger
+    function searchFromHero() {
+      const heroQuery = document.getElementById("heroSearchInput").value.trim();
+      document.getElementById("jobKeywordInput").value = heroQuery;
+      renderJobs();
+      document.getElementById("jobs").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function handleHeroSearch(e) {
+      if (e.key === 'Enter') {
+        searchFromHero();
+      }
+    }
+
+    // Bookmark Saved Job Functionality
+    function toggleSaveJob(id, e) {
+      if (e) e.stopPropagation();
+      if (savedJobIds.has(id)) {
+        savedJobIds.delete(id);
+        showToast("นำออกจากรายการงานที่บันทึกแล้ว");
+      } else {
+        savedJobIds.add(id);
+        showToast("บันทึกงานนี้ไว้ในรายการโปรดแล้ว ❤️");
+      }
+      updateSavedBadge();
+      renderJobs();
+    }
+
+    function updateSavedBadge() {
+      document.getElementById("savedCountBadge").innerText = savedJobIds.size;
+    }
+
+    // Saved Jobs Modal
+    function openSavedModal() {
+      const container = document.getElementById("savedJobsListContainer");
+      if (savedJobIds.size === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:30px 10px; color:var(--muted);">
+            <div style="font-size:36px; margin-bottom:10px;">🤍</div>
+            <p>คุณยังไม่ได้บันทึกตำแหน่งงานใดๆ</p>
+            <button class="btn btn-primary btn-sm" style="margin-top:12px;" onclick="closeSavedModal(); document.getElementById('jobs').scrollIntoView();">
+              ไปเลือกดูงาน
+            </button>
+          </div>
+        `;
+      } else {
+        const savedList = jobsData.filter(j => savedJobIds.has(j.id));
+        container.innerHTML = savedList.map(job => `
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; border-bottom:1px solid #f1f5f9;">
+            <div>
+              <div style="font-weight:700; color:var(--navy); font-size:14px;">${job.title}</div>
+              <div style="font-size:12px; color:var(--muted);">${job.company} · <span style="color:var(--primary); font-weight:600;">${job.salary}</span></div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-primary btn-sm" onclick="closeSavedModal(); openApplyModal(${job.id})">สมัคร</button>
+              <button class="btn btn-outline btn-sm" onclick="toggleSaveJob(${job.id}); openSavedModal();">ลบ</button>
+            </div>
+          </div>
+        `).join('');
+      }
+      document.getElementById("savedModal").classList.add("open");
+    }
+
+    function closeSavedModal() {
+      document.getElementById("savedModal").classList.remove("open");
+    }
+
+    // Application Modal
+    let activeApplyingJob = null;
+    function openApplyModal(jobId) {
+      activeApplyingJob = jobsData.find(j => j.id === jobId);
+      if (!activeApplyingJob) return;
+
+      document.getElementById("modalJobTitle").innerText = `สมัคร: ${activeApplyingJob.title}`;
+      document.getElementById("modalCompanyName").innerText = activeApplyingJob.company;
+      document.getElementById("modalLocation").innerText = `📍 ${activeApplyingJob.locationDetail}`;
+      document.getElementById("modalSalary").innerText = `💰 ${activeApplyingJob.salary}`;
+
+      document.getElementById("applyModal").classList.add("open");
+    }
+
+    function closeApplyModal() {
+      document.getElementById("applyModal").classList.remove("open");
+    }
+
+    function submitApplication(e) {
+      e.preventDefault();
+      closeApplyModal();
+      showToast(`🎉 ส่งใบสมัครตำแหน่ง "${activeApplyingJob ? activeApplyingJob.title : 'งาน'}" เรียบร้อยแล้ว! ร้านค้าจะติดต่อกลับทาง LINE`, 'success');
+      e.target.reset();
+    }
+
+    // Report Suspicious Job Modal
+    function openReportModal(jobId) {
+      document.getElementById("reportJobId").value = jobId;
+      document.getElementById("reportModal").classList.add("open");
+    }
+
+    function closeReportModal() {
+      document.getElementById("reportModal").classList.remove("open");
+    }
+
+    function submitReport(e) {
+      e.preventDefault();
+      closeReportModal();
+      showToast("🛡️ ขอบคุณสำหรับการรายงาน! ทีมงานความปลอดภัย UniWork จะดำเนินการตรวจสอบภายใน 24 ชม.", "danger");
+      e.target.reset();
+    }
+
+    // Post a Job Modal (For Employers)
+    function openPostJobModal() {
+      document.getElementById("postJobModal").classList.add("open");
+    }
+
+    function closePostJobModal() {
+      document.getElementById("postJobModal").classList.remove("open");
+    }
+
+    function submitNewJob(e) {
+      e.preventDefault();
+      const title = document.getElementById("newJobTitle").value;
+      const company = document.getElementById("newJobCompany").value;
+      const category = document.getElementById("newJobCat").value;
+      const location = document.getElementById("newJobLocation").value;
+      const salary = document.getElementById("newJobSalary").value;
+      const schedule = document.getElementById("newJobSchedule").value;
+      const desc = document.getElementById("newJobDesc").value;
+
+      const newId = Date.now();
+      const iconMap = {
+        cafe: '☕',
+        food: '🍽️',
+        pack: '📦',
+        online: '💻',
+        tutor: '📚',
+        event: '🎪'
+      };
+
+      const newJob = {
+        id: newId,
+        title: title,
+        company: company,
+        category: category,
+        icon: iconMap[category] || '💼',
+        location: location.includes('สยาม') ? 'สยาม' : (location.includes('รังสิต') ? 'รังสิต' : 'ลาดพร้าว'),
+        locationDetail: location,
+        salary: salary,
+        salaryType: salary.includes('วัน') ? 'rate-day' : 'rate-70',
+        schedule: `🕒 ${schedule}`,
+        desc: desc,
+        verified: true,
+        postedDate: 'เมื่อสักครู่'
+      };
+
+      jobsData.unshift(newJob);
+      closePostJobModal();
+      e.target.reset();
+      renderJobs();
+      showToast(`✨ ลงประกาศงาน "${title}" เรียบร้อยแล้ว! พร้อมแสดงในหน้ารายการงาน`, 'success');
+      document.getElementById("jobs").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Login Modal
+    function openLoginModal() {
+      document.getElementById("loginModal").classList.add("open");
+    }
+
+    function closeLoginModal() {
+      document.getElementById("loginModal").classList.remove("open");
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      closeLoginModal();
+      showToast("👋 เข้าสู่ระบบสำเร็จ ยินดีต้อนรับสู่ UniWork!", "success");
+    }
+
+    function toggleMobileMenu() {
+      const navLinks = document.querySelector(".nav-links");
+      if (navLinks.style.display === "flex") {
+        navLinks.style.display = "none";
+      } else {
+        navLinks.style.display = "flex";
+        navLinks.style.flexDirection = "column";
+        navLinks.style.position = "absolute";
+        navLinks.style.top = "78px";
+        navLinks.style.left = "0";
+        navLinks.style.width = "100%";
+        navLinks.style.background = "#fff";
+        navLinks.style.padding = "20px";
+        navLinks.style.boxShadow = "0 10px 25px rgba(0,0,0,0.1)";
+      }
+    }
+
+    // Toast Notification System
+    function showToast(message, type = 'normal') {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = `toast-item ${type === 'success' ? 'toast-success' : (type === 'danger' ? 'toast-danger' : '')}`;
+      toast.innerHTML = `
+        <span>${type === 'success' ? '✅' : (type === 'danger' ? '🛡️' : 'ℹ️')}</span>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
