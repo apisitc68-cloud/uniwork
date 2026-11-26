@@ -64,8 +64,8 @@ async function startServer() {
 
         console.log("MySQL Connected Successfully!");
 
-        app.listen(PORT, () => {
-            console.log(`UniWork running at http://localhost:${PORT}`);
+        app.listen(PORT, "0.0.0.0", () => {
+            console.log(`UniWork running on port ${PORT}`);
         });
     } catch (error) {
         console.error("Database Connection Error:", error.message);
